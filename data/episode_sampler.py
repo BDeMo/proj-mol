@@ -111,15 +111,27 @@ class EpisodeSampler:
         )
 
     def _sample_tasks(self, required_per_way: int) -> List[str]:
-        """Sample N tasks that each have enough positive examples."""
+        """Sample N tasks that each have enough positive examples.
+
+        If the split contains fewer eligible tasks than n_way, the episode is
+        constructed with the maximum available number of ways (with a warning
+        on the first occurrence).
+        """
         eligible = [
             tid for tid in self.task_ids
             if len(self.task_indices[tid]["pos"]) >= required_per_way
         ]
-        if len(eligible) < self.n_way:
+        actual_n_way = min(self.n_way, len(eligible))
+        if actual_n_way < 2:
             raise ValueError(
                 f"Only {len(eligible)} tasks have >= {required_per_way} positives, "
-                f"but need {self.n_way}-way. Try lowering n_way or k_shot."
+                f"need at least 2 for classification. Try lowering k_shot or "
+                f"using more datasets."
             )
-        chosen_idx = self.rng.choice(len(eligible), size=self.n_way, replace=False)
+        if actual_n_way < self.n_way and not getattr(self, "_warned_nway", False):
+            print(f"  [EpisodeSampler] WARNING: only {len(eligible)} eligible "
+                  f"tasks in this split, capping n_way from {self.n_way} "
+                  f"to {actual_n_way}")
+            self._warned_nway = True
+        chosen_idx = self.rng.choice(len(eligible), size=actual_n_way, replace=False)
         return [eligible[i] for i in chosen_idx]

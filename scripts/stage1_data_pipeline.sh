@@ -26,7 +26,7 @@ all_graphs, all_task_indices, all_task_ids = load_all_datasets(
 
 # Split tasks
 print('\n--- Task-level meta-splits ---')
-splits = split_tasks(all_task_ids, 0.6, 0.2, seed=42)
+splits = split_tasks(all_task_ids, 0.6, 0.2, seed=42, min_per_split=5)
 
 # Report per-dataset statistics
 print('\n--- Per-task statistics ---')

@@ -172,6 +172,11 @@ class GraphOfShots(nn.Module):
     ):
         """Forward pass for one episode.
 
+        ``n_way`` may be smaller than ``self.n_way`` when the episode sampler
+        caps the number of ways.  In that case, the one-hot label vector is
+        zero-padded to ``self.n_way`` so that layer dimensions remain fixed,
+        and the classifier output is sliced to ``[:, :n_way]``.
+
         Returns:
             logits: [Q, n_way] query classification logits.
             loss: Cross-entropy loss on query predictions.
@@ -187,21 +192,21 @@ class GraphOfShots(nn.Module):
         aff_matrix = self.affinity(h_all)  # [M, M]
         edge_index, edge_weight = build_meta_graph(aff_matrix, self.meta_k)
 
-        # 3. Augment node features with label info
-        label_s = F.one_hot(support_labels, num_classes=self.n_way).float()  # [N*K, n_way]
-        label_q = torch.zeros(h_q.size(0), self.n_way, device=h_q.device)   # [Q, n_way]
+        # 3. Augment node features with label info (pad to self.n_way)
+        label_s = F.one_hot(support_labels, num_classes=self.n_way).float()  # [N*K, self.n_way]
+        label_q = torch.zeros(h_q.size(0), self.n_way, device=h_q.device)
 
         z_init = torch.cat([
-            torch.cat([h_s, label_s], dim=1),  # [N*K, d+n_way]
-            torch.cat([h_q, label_q], dim=1),  # [Q, d+n_way]
-        ], dim=0)  # [M, d+n_way]
+            torch.cat([h_s, label_s], dim=1),
+            torch.cat([h_q, label_q], dim=1),
+        ], dim=0)  # [M, d + self.n_way]
 
         # 4. Meta-GNN propagation
         z = self.meta_gnn(z_init, edge_index, edge_weight)  # [M, d]
 
-        # 5. Classify query nodes
+        # 5. Classify query nodes (slice to actual n_way)
         query_z = z[n_support:]  # [Q, d]
-        logits = self.classifier(query_z)  # [Q, n_way]
+        logits = self.classifier(query_z)[:, :n_way]  # [Q, n_way]
 
         loss = F.cross_entropy(logits, query_labels)
         return logits, loss

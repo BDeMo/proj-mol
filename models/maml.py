@@ -66,7 +66,7 @@ class MAMLClassifier(nn.Module):
 
         # Inner loop: adapt on support set
         for step in range(self.inner_steps):
-            logits_s = self._forward_with_params(fast_params, support_batch)
+            logits_s = self._forward_with_params(fast_params, support_batch)[:, :n_way]
             loss_s = F.cross_entropy(logits_s, support_labels)
             grads = torch.autograd.grad(
                 loss_s, fast_params.values(), create_graph=False
@@ -76,8 +76,8 @@ class MAMLClassifier(nn.Module):
                 for (name, param), grad in zip(fast_params.items(), grads)
             )
 
-        # Query loss with adapted parameters
-        logits_q = self._forward_with_params(fast_params, query_batch)
+        # Query loss with adapted parameters (slice to actual n_way)
+        logits_q = self._forward_with_params(fast_params, query_batch)[:, :n_way]
         loss_q = F.cross_entropy(logits_q, query_labels)
 
         # For FOMAML: the meta-gradient is approximated as the gradient of loss_q

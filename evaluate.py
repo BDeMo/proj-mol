@@ -31,8 +31,11 @@ def main():
         args.data_root, args.datasets, args.min_pos
     )
 
-    # Split tasks
-    splits = split_tasks(all_task_ids, args.train_ratio, args.val_ratio, args.seed)
+    # Split tasks (ensure each split has at least n_way tasks)
+    splits = split_tasks(
+        all_task_ids, args.train_ratio, args.val_ratio, args.seed,
+        min_per_split=args.n_way,
+    )
 
     # Meta-test sampler
     test_sampler = EpisodeSampler(
@@ -67,12 +70,12 @@ def main():
     with torch.no_grad():
         for _ in tqdm(range(args.episodes_test), desc="Evaluating"):
             episode = test_sampler.sample_episode()
-            logits, loss, ql = run_episode(model, episode, args)
+            logits, loss, ql, actual_n_way = run_episode(model, episode, args)
 
             probs = F.softmax(logits, dim=1).cpu().numpy()
             labels = ql.cpu().numpy()
 
-            auc = compute_episode_auc(probs, labels, args.n_way)
+            auc = compute_episode_auc(probs, labels, actual_n_way)
             acc = (logits.argmax(dim=1) == ql).float().mean().item()
 
             aucs.append(auc)

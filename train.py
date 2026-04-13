@@ -47,9 +47,14 @@ def build_model(args):
 def run_episode(model, episode, args):
     """Run a single episode through the model.
 
+    The actual n_way is inferred from episode labels (the sampler may cap it
+    when a split has fewer eligible tasks than args.n_way).
+
     Returns:
         logits: [Q, n_way] tensor.
         loss: scalar tensor.
+        ql: query labels tensor.
+        actual_n_way: int, the number of ways in this episode.
     """
     device = next(model.parameters()).device
     sb = episode.support_batch.to(device)
@@ -57,8 +62,9 @@ def run_episode(model, episode, args):
     qb = episode.query_batch.to(device)
     ql = episode.query_labels.to(device)
 
-    logits, loss = model(sb, sl, qb, ql, args.n_way)
-    return logits, loss, ql
+    actual_n_way = int(sl.max().item()) + 1
+    logits, loss = model(sb, sl, qb, ql, actual_n_way)
+    return logits, loss, ql, actual_n_way
 
 
 def evaluate(model, sampler, args, num_episodes: int):
@@ -75,12 +81,12 @@ def evaluate(model, sampler, args, num_episodes: int):
     with torch.no_grad():
         for _ in range(num_episodes):
             episode = sampler.sample_episode()
-            logits, loss, ql = run_episode(model, episode, args)
+            logits, loss, ql, actual_n_way = run_episode(model, episode, args)
 
             probs = F.softmax(logits, dim=1).cpu().numpy()
             labels = ql.cpu().numpy()
 
-            auc = compute_episode_auc(probs, labels, args.n_way)
+            auc = compute_episode_auc(probs, labels, actual_n_way)
             acc = (logits.argmax(dim=1) == ql).float().mean().item()
 
             aucs.append(auc)
@@ -108,9 +114,12 @@ def main():
         args.data_root, args.datasets, args.min_pos
     )
 
-    # 2. Split tasks
+    # 2. Split tasks (ensure each split has at least n_way tasks)
     print("\n=== Splitting tasks ===")
-    splits = split_tasks(all_task_ids, args.train_ratio, args.val_ratio, args.seed)
+    splits = split_tasks(
+        all_task_ids, args.train_ratio, args.val_ratio, args.seed,
+        min_per_split=args.n_way,
+    )
 
     # 3. Create episode samplers
     train_sampler = EpisodeSampler(
@@ -147,7 +156,7 @@ def main():
     for ep in pbar:
         model.train()
         episode = train_sampler.sample_episode()
-        logits, loss, _ = run_episode(model, episode, args)
+        logits, loss, _, _ = run_episode(model, episode, args)
 
         optimizer.zero_grad()
         loss.backward()
