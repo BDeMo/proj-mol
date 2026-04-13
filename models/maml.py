@@ -59,9 +59,12 @@ class MAMLClassifier(nn.Module):
             logits: [Q, n_way] classification logits from adapted model.
             loss: Meta-loss for outer-loop optimization.
         """
-        # Collect all named parameters
+        # FOMAML: detach inner loop from the original graph.
+        # Meta-gradients come from the query forward pass through the original
+        # model weights via functional_call (which reads self.parameters()).
         fast_params = OrderedDict(
-            (name, param.clone()) for name, param in self.named_parameters()
+            (name, param.detach().clone().requires_grad_(True))
+            for name, param in self.named_parameters()
         )
 
         # Inner loop: adapt on support set
@@ -72,16 +75,16 @@ class MAMLClassifier(nn.Module):
                 loss_s, fast_params.values(), create_graph=False
             )
             fast_params = OrderedDict(
-                (name, param - self.inner_lr * grad)
+                (name, (param - self.inner_lr * grad).detach().requires_grad_(True))
                 for (name, param), grad in zip(fast_params.items(), grads)
             )
 
-        # Query loss with adapted parameters (slice to actual n_way)
-        logits_q = self._forward_with_params(fast_params, query_batch)[:, :n_way]
+        # Query loss: use original model weights so gradients flow to self.parameters()
+        logits_q = self.classifier(self.encoder(query_batch))[:, :n_way]
         loss_q = F.cross_entropy(logits_q, query_labels)
 
-        # For FOMAML: the meta-gradient is approximated as the gradient of loss_q
-        # w.r.t. the original parameters. Since fast_params were cloned (not detached),
-        # loss_q.backward() will flow gradients back to self.parameters() through
-        # the clone operation. This gives the first-order approximation.
-        return logits_q, loss_q
+        # Also compute adapted logits for metrics (detached)
+        with torch.no_grad():
+            adapted_logits = self._forward_with_params(fast_params, query_batch)[:, :n_way]
+
+        return adapted_logits, loss_q
