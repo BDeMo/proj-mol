@@ -151,20 +151,39 @@ class GraphOfShots(nn.Module):
         n_way: int,
         meta_gnn_layers: int = 2,
         distance: str = "euclidean",
+        refine_steps: int = 2,
     ):
         super().__init__()
         self.encoder = encoder
         self.n_way = n_way
         self.meta_k = meta_k
         self.distance = distance
+        self.refine_steps = refine_steps
 
         embed_dim = encoder.out_dim
-        self.affinity = AffinityFunction(affinity_method, embed_dim)
 
-        # Meta-GNN input: embedding + one-hot label
+        # Separate affinity + meta-GNN per refinement step so later rounds can
+        # specialize to label-conditioned features.
+        self.affinities = nn.ModuleList([
+            AffinityFunction(affinity_method, embed_dim)
+            for _ in range(refine_steps)
+        ])
+
         meta_in_dim = embed_dim + n_way
         meta_hidden = embed_dim
-        self.meta_gnn = MetaGNN(meta_in_dim, meta_hidden, embed_dim, meta_gnn_layers)
+        self.meta_gnns = nn.ModuleList([
+            MetaGNN(meta_in_dim, meta_hidden, embed_dim, meta_gnn_layers)
+            for _ in range(refine_steps)
+        ])
+
+    # Backwards-compatible aliases: ablation code references .affinity / .meta_gnn
+    @property
+    def affinity(self):
+        return self.affinities[0]
+
+    @property
+    def meta_gnn(self):
+        return self.meta_gnns[0]
 
     def forward(
         self,
@@ -176,39 +195,31 @@ class GraphOfShots(nn.Module):
     ):
         """Forward pass for one episode.
 
-        ``n_way`` may be smaller than ``self.n_way`` when the episode sampler
-        caps the number of ways; the one-hot label vector is zero-padded to
-        ``self.n_way`` so that layer dimensions remain fixed.
-
-        Returns:
-            logits: [Q, n_way] query classification logits (negative distance
-                to each class prototype, or cosine similarity).
-            loss: Cross-entropy loss on query predictions.
+        Iterative refinement: at each step, rebuild the meta-graph from the
+        current node features and run another meta-GNN pass.  The label one-hot
+        is re-injected at every round so label information persists through
+        refinement.
         """
         # 1. Encode all molecules
         h_s = self.encoder(support_batch)  # [N*K, d]
         h_q = self.encoder(query_batch)    # [Q, d]
-        h_all = torch.cat([h_s, h_q], dim=0)  # [M, d]
-
         n_support = h_s.size(0)
+        z = torch.cat([h_s, h_q], dim=0)  # [M, d]
 
-        # 2. Build meta-graph
-        aff_matrix = self.affinity(h_all)  # [M, M]
-        edge_index, edge_weight = build_meta_graph(aff_matrix, self.meta_k)
-
-        # 3. Augment node features with label info (pad to self.n_way)
+        # Pre-compute label augmentation (constant across refinement rounds)
         label_s = F.one_hot(support_labels, num_classes=self.n_way).float()
         label_q = torch.zeros(h_q.size(0), self.n_way, device=h_q.device)
+        label_block = torch.cat([label_s, label_q], dim=0)  # [M, n_way]
 
-        z_init = torch.cat([
-            torch.cat([h_s, label_s], dim=1),
-            torch.cat([h_q, label_q], dim=1),
-        ], dim=0)  # [M, d + self.n_way]
+        # 2-4. Iterative refinement
+        for affinity, meta_gnn in zip(self.affinities, self.meta_gnns):
+            aff_matrix = affinity(z)
+            edge_index, edge_weight = build_meta_graph(aff_matrix, self.meta_k)
+            z_input = torch.cat([z, label_block], dim=1)  # [M, d + n_way]
+            z = meta_gnn(z_input, edge_index, edge_weight)  # [M, d]
 
-        # 4. Meta-GNN propagation
-        z = self.meta_gnn(z_init, edge_index, edge_weight)  # [M, d]
-        z_s = z[:n_support]   # [N*K, d]
-        z_q = z[n_support:]   # [Q, d]
+        z_s = z[:n_support]
+        z_q = z[n_support:]
 
         # 5. Prototype-based classification (no persistent class parameters)
         d = z.size(1)
@@ -218,13 +229,13 @@ class GraphOfShots(nn.Module):
         counts.scatter_add_(
             0, support_labels, torch.ones_like(support_labels, dtype=torch.float)
         )
-        prototypes = prototypes / counts.unsqueeze(1).clamp(min=1)  # [n_way, d]
+        prototypes = prototypes / counts.unsqueeze(1).clamp(min=1)
 
         if self.distance == "cosine":
             logits = F.normalize(z_q, dim=1) @ F.normalize(prototypes, dim=1).T
-            logits = logits * 10.0  # temperature
+            logits = logits * 10.0
         else:
-            logits = -torch.cdist(z_q, prototypes, p=2)  # [Q, n_way]
+            logits = -torch.cdist(z_q, prototypes, p=2)
 
         loss = F.cross_entropy(logits, query_labels)
         return logits, loss

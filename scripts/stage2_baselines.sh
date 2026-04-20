@@ -1,6 +1,9 @@
 #!/bin/bash
 # Stage 2: Molecular Encoder and Instance-Centric Baselines
 # Trains ProtoNet and MAML under specified episodic configurations.
+#
+# Env vars (all optional):
+#   DATASETS  N_WAY  K_SHOT  EPISODES  PATIENCE  DEVICE
 
 set -e
 cd "$(dirname "$0")/.."
@@ -12,32 +15,22 @@ echo "=============================================="
 DATASETS="${DATASETS:-tox21}"
 N_WAY="${N_WAY:-5}"
 K_SHOT="${K_SHOT:-1}"
-EPISODES="${EPISODES:-10000}"
+EPISODES="${EPISODES:-30000}"
+PATIENCE="${PATIENCE:-20}"
 DEVICE="${DEVICE:-cuda}"
 
-echo "Config: ${N_WAY}-way ${K_SHOT}-shot, datasets=${DATASETS}"
+COMMON=(--datasets $DATASETS --n_way $N_WAY --k_shot $K_SHOT
+        --episodes_train $EPISODES --patience $PATIENCE --device $DEVICE)
 
-# Train Prototypical Network
+echo "Config: ${N_WAY}-way ${K_SHOT}-shot, datasets=${DATASETS}, episodes=${EPISODES}"
+
 echo ""
 echo "--- Training Prototypical Network ---"
-python train.py \
-    --method proto \
-    --datasets ${DATASETS} \
-    --n_way ${N_WAY} \
-    --k_shot ${K_SHOT} \
-    --episodes_train ${EPISODES} \
-    --device ${DEVICE}
+python train.py --method proto "${COMMON[@]}"
 
-# Train MAML
 echo ""
 echo "--- Training MAML ---"
-python train.py \
-    --method maml \
-    --datasets ${DATASETS} \
-    --n_way ${N_WAY} \
-    --k_shot ${K_SHOT} \
-    --episodes_train ${EPISODES} \
-    --device ${DEVICE}
+python train.py --method maml "${COMMON[@]}"
 
 echo ""
 echo "=== Stage 2 Complete ==="

@@ -38,6 +38,7 @@ def build_model(args):
             meta_k=args.meta_k,
             n_way=args.n_way,
             meta_gnn_layers=args.meta_gnn_layers,
+            refine_steps=args.refine_steps,
         )
     else:
         raise ValueError(f"Unknown method: {args.method}")

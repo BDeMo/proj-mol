@@ -32,6 +32,8 @@ def get_args():
     p.add_argument("--meta_k", type=int, default=5,
                    help="k for kNN sparsification of meta-graph")
     p.add_argument("--meta_gnn_layers", type=int, default=2)
+    p.add_argument("--refine_steps", type=int, default=2,
+                   help="Iterative refinement rounds in Graph-of-Shots")
 
     # Method
     p.add_argument("--method", type=str, default="gos",
@@ -42,13 +44,13 @@ def get_args():
     p.add_argument("--maml_inner_steps", type=int, default=5)
 
     # Training
-    p.add_argument("--episodes_train", type=int, default=10000)
+    p.add_argument("--episodes_train", type=int, default=30000)
     p.add_argument("--episodes_val", type=int, default=500)
     p.add_argument("--episodes_test", type=int, default=1000)
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--weight_decay", type=float, default=1e-5)
     p.add_argument("--eval_every", type=int, default=500)
-    p.add_argument("--patience", type=int, default=10,
+    p.add_argument("--patience", type=int, default=20,
                    help="Early stopping patience (in eval rounds)")
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--device", type=str, default="cuda")
