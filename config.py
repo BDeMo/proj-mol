@@ -77,4 +77,12 @@ def get_args():
     p.add_argument("--save_dir", type=str, default="./checkpoints")
     p.add_argument("--log_dir", type=str, default="./logs")
 
+    # Resume
+    p.add_argument("--resume", action="store_true",
+                   help="auto-resume from ./<save_dir>/<exp_name>_last.pt if present")
+    p.add_argument("--no_resume", dest="resume", action="store_false")
+    p.set_defaults(resume=True)
+    p.add_argument("--resume_ckpt", type=str, default=None,
+                   help="explicit resume checkpoint path (overrides auto)")
+
     return p.parse_args()

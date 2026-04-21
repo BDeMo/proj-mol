@@ -178,15 +178,67 @@ def main():
     best_val_auc = 0.0
     patience_counter = 0
     history = {"train_loss": [], "val_auc": [], "val_loss": [], "val_acc": []}
+    start_ep = 1
 
     exp_name = f"{args.method}_{args.n_way}w{args.k_shot}s"
-    if args.method == "gos":
+    if args.method in ("gos", "gos_v2"):
         exp_name += f"_{args.affinity}_k{args.meta_k}"
 
-    pbar = tqdm(range(1, args.episodes_train + 1), desc="Training")
+    # ── Resume from last checkpoint if requested/available ─────────
+    last_ckpt = args.resume_ckpt or os.path.join(
+        args.save_dir, f"{exp_name}_last.pt")
+    if args.resume and os.path.exists(last_ckpt):
+        print(f"[resume] loading {last_ckpt}")
+        state = torch.load(last_ckpt, map_location=device, weights_only=False)
+        model.load_state_dict(state["model_state_dict"])
+        if "optimizer_state_dict" in state:
+            optimizer.load_state_dict(state["optimizer_state_dict"])
+        start_ep = state.get("episode", 0) + 1
+        best_val_auc = state.get("best_val_auc", 0.0)
+        patience_counter = state.get("patience_counter", 0)
+        history = state.get("history", history)
+        print(f"[resume] starting from episode {start_ep}, "
+              f"best val AUC so far {best_val_auc:.4f}")
+    elif args.resume:
+        print(f"[resume] no checkpoint at {last_ckpt} — training from scratch")
+
+    if start_ep > args.episodes_train:
+        print(f"[resume] episode {start_ep} already > --episodes_train "
+              f"{args.episodes_train}; nothing to do.")
+        return
+
+    pbar = tqdm(range(start_ep, args.episodes_train + 1),
+                initial=start_ep - 1, total=args.episodes_train,
+                desc="Training")
     running_loss = 0.0
 
+    def _save_last(ep):
+        last_path = os.path.join(args.save_dir, f"{exp_name}_last.pt")
+        torch.save({
+            "model_state_dict": model.state_dict(),
+            "optimizer_state_dict": optimizer.state_dict(),
+            "args": vars(args),
+            "episode": ep,
+            "best_val_auc": best_val_auc,
+            "patience_counter": patience_counter,
+            "history": history,
+        }, last_path)
+
+    import signal
+    _interrupted = {"flag": False, "ep": 0}
+    def _handle_sigint(signum, frame):
+        print(f"\n[resume] caught signal {signum} — writing last checkpoint "
+              f"at episode {_interrupted['ep']} and exiting gracefully.")
+        _save_last(_interrupted["ep"])
+        import sys; sys.exit(130)
+    signal.signal(signal.SIGINT, _handle_sigint)
+    try:
+        signal.signal(signal.SIGTERM, _handle_sigint)
+    except (ValueError, AttributeError):
+        pass  # SIGTERM unavailable on Windows
+
     for ep in pbar:
+        _interrupted["ep"] = ep
         model.train()
         episode = train_sampler.sample_episode()
         logits, loss, _, _ = run_episode(model, episode, args)
@@ -217,7 +269,8 @@ def main():
                 "val_acc": f"{val_acc:.4f}",
             })
 
-            if val_auc > best_val_auc:
+            improved = val_auc > best_val_auc
+            if improved:
                 best_val_auc = val_auc
                 patience_counter = 0
                 ckpt_path = os.path.join(args.save_dir, f"{exp_name}_best.pt")
@@ -229,10 +282,15 @@ def main():
                 }, ckpt_path)
             else:
                 patience_counter += 1
-                if patience_counter >= args.patience:
-                    print(f"\nEarly stopping at episode {ep} "
-                          f"(best val AUC: {best_val_auc:.4f})")
-                    break
+
+            # Always save a resumable "last" checkpoint so an interrupted
+            # run can pick up where it left off.
+            _save_last(ep)
+
+            if not improved and patience_counter >= args.patience:
+                print(f"\nEarly stopping at episode {ep} "
+                      f"(best val AUC: {best_val_auc:.4f})")
+                break
 
     # Save training history
     hist_path = os.path.join(args.log_dir, f"{exp_name}_history.json")
