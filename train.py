@@ -44,7 +44,7 @@ def print_progress(tag: str, ep: int, total: int,
     print("  ".join(parts), flush=True)
 
 from config import get_args
-from utils import set_seed, compute_episode_auc, ensure_dir
+from utils import set_seed, compute_episode_auc, ensure_dir, build_exp_name
 from data import load_all_datasets, split_tasks, EpisodeSampler
 from models import (
     MPNNEncoder, PrototypicalNetwork, MAMLClassifier,
@@ -215,9 +215,8 @@ def main():
     history = {"train_loss": [], "val_auc": [], "val_loss": [], "val_acc": []}
     start_ep = 1
 
-    exp_name = f"{args.method}_{args.n_way}w{args.k_shot}s"
-    if args.method in ("gos", "gos_v2"):
-        exp_name += f"_{args.affinity}_k{args.meta_k}"
+    exp_name = build_exp_name(args)
+    print(f"[exp_name] {exp_name}")
 
     # ── Resume from last checkpoint if requested/available ─────────
     last_ckpt = args.resume_ckpt or os.path.join(

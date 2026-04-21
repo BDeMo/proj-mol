@@ -1,0 +1,21 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 3.6s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 188,289
+
+=== Training ===
+[resume] loading ./checkpoints/gos_v2_5w5s_cosine_k5_last.pt
+[resume] starting from episode 29501, best val AUC so far 0.7084
+[gos_v2_5w5s_cosine_k5] training 30000 episodes (start 29501, eval every 500, patience 20)
+[gos_v2_5w5s_cosine_k5]  ep  30000/30000  (100.0%)  loss 2.0072  val_auc 0.7046±0.0091  best 0.7084  pat 0/20  elapsed 0m21s  ETA 0m00s
+
+Training complete. Best val AUC: 0.7084
+Checkpoint: ./checkpoints/gos_v2_5w5s_cosine_k5_best.pt
+History: ./logs_v2/gos_v2_5w5s_cosine_k5_history.json

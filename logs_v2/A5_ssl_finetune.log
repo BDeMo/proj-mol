@@ -1,0 +1,17 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 3.7s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded SSL-pretrained encoder from ./checkpoints/ssl_encoder.pt
+Model parameters: 188,289
+
+=== Training ===
+[resume] loading ./checkpoints/gos_v2_5w5s_cosine_k5_last.pt
+[resume] starting from episode 30001, best val AUC so far 0.7087
+[resume] episode 30001 already > --episodes_train 30000; nothing to do.

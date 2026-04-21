@@ -76,6 +76,11 @@ def get_args():
     p.add_argument("--device", type=str, default="cuda")
     p.add_argument("--save_dir", type=str, default="./checkpoints")
     p.add_argument("--log_dir", type=str, default="./logs")
+    p.add_argument("--exp_name", type=str, default=None,
+                   help="Explicit checkpoint/history name. If omitted, an "
+                        "exp_name is generated from the full config so that "
+                        "runs with different hyperparameters don't overwrite "
+                        "each other's checkpoints.")
 
     # Resume
     p.add_argument("--resume", action="store_true",

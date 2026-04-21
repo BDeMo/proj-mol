@@ -1,0 +1,80 @@
+Device: cuda
+Method: gos_v2 | 5-way 1-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 4.6s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded SSL-pretrained encoder from ./checkpoints/ssl_encoder.pt
+Model parameters: 188,289
+
+=== Training ===
+[resume] no checkpoint at ./checkpoints/gos_v2_5w1s_cosine_k5_last.pt — training from scratch
+[gos_v2_5w1s_cosine_k5] training 30000 episodes (start 1, eval every 500, patience 20)
+[gos_v2_5w1s_cosine_k5]  ep    500/30000  (  1.7%)  loss 2.8847  val_auc 0.5385±0.0084  best 0.0000  pat 0/20  elapsed 0m20s  ETA 20m09s
+[gos_v2_5w1s_cosine_k5]  ep   1000/30000  (  3.3%)  loss 2.5085  val_auc 0.5388±0.0090  best 0.5385  pat 0/20  elapsed 0m40s  ETA 19m38s
+[gos_v2_5w1s_cosine_k5]  ep   1500/30000  (  5.0%)  loss 2.4567  val_auc 0.5531±0.0090  best 0.5388  pat 0/20  elapsed 1m00s  ETA 19m10s
+[gos_v2_5w1s_cosine_k5]  ep   2000/30000  (  6.7%)  loss 2.4492  val_auc 0.5356±0.0081  best 0.5531  pat 0/20  elapsed 1m20s  ETA 18m47s
+[gos_v2_5w1s_cosine_k5]  ep   2500/30000  (  8.3%)  loss 2.4368  val_auc 0.5445±0.0086  best 0.5531  pat 1/20  elapsed 1m39s  ETA 18m19s
+[gos_v2_5w1s_cosine_k5]  ep   3000/30000  ( 10.0%)  loss 2.4181  val_auc 0.5465±0.0090  best 0.5531  pat 2/20  elapsed 1m59s  ETA 17m56s
+[gos_v2_5w1s_cosine_k5]  ep   3500/30000  ( 11.7%)  loss 2.4144  val_auc 0.5577±0.0090  best 0.5531  pat 3/20  elapsed 2m19s  ETA 17m38s
+[gos_v2_5w1s_cosine_k5]  ep   4000/30000  ( 13.3%)  loss 2.4131  val_auc 0.5564±0.0083  best 0.5577  pat 0/20  elapsed 2m39s  ETA 17m16s
+[gos_v2_5w1s_cosine_k5]  ep   4500/30000  ( 15.0%)  loss 2.4138  val_auc 0.5312±0.0087  best 0.5577  pat 1/20  elapsed 2m59s  ETA 16m57s
+[gos_v2_5w1s_cosine_k5]  ep   5000/30000  ( 16.7%)  loss 2.4104  val_auc 0.5635±0.0092  best 0.5577  pat 2/20  elapsed 3m19s  ETA 16m38s
+[gos_v2_5w1s_cosine_k5]  ep   5500/30000  ( 18.3%)  loss 2.4081  val_auc 0.5470±0.0089  best 0.5635  pat 0/20  elapsed 3m39s  ETA 16m18s
+[gos_v2_5w1s_cosine_k5]  ep   6000/30000  ( 20.0%)  loss 2.4071  val_auc 0.5544±0.0091  best 0.5635  pat 1/20  elapsed 3m59s  ETA 15m58s
+[gos_v2_5w1s_cosine_k5]  ep   6500/30000  ( 21.7%)  loss 2.4049  val_auc 0.5483±0.0093  best 0.5635  pat 2/20  elapsed 4m19s  ETA 15m38s
+[gos_v2_5w1s_cosine_k5]  ep   7000/30000  ( 23.3%)  loss 2.4025  val_auc 0.5579±0.0092  best 0.5635  pat 3/20  elapsed 4m40s  ETA 15m22s
+[gos_v2_5w1s_cosine_k5]  ep   7500/30000  ( 25.0%)  loss 2.4021  val_auc 0.5515±0.0097  best 0.5635  pat 4/20  elapsed 5m00s  ETA 15m01s
+[gos_v2_5w1s_cosine_k5]  ep   8000/30000  ( 26.7%)  loss 2.3984  val_auc 0.5601±0.0090  best 0.5635  pat 5/20  elapsed 5m20s  ETA 14m41s
+[gos_v2_5w1s_cosine_k5]  ep   8500/30000  ( 28.3%)  loss 2.3984  val_auc 0.5592±0.0094  best 0.5635  pat 6/20  elapsed 5m40s  ETA 14m21s
+[gos_v2_5w1s_cosine_k5]  ep   9000/30000  ( 30.0%)  loss 2.3982  val_auc 0.5623±0.0087  best 0.5635  pat 7/20  elapsed 6m00s  ETA 14m01s
+[gos_v2_5w1s_cosine_k5]  ep   9500/30000  ( 31.7%)  loss 2.3987  val_auc 0.5690±0.0083  best 0.5635  pat 8/20  elapsed 6m20s  ETA 13m41s
+[gos_v2_5w1s_cosine_k5]  ep  10000/30000  ( 33.3%)  loss 2.3977  val_auc 0.5578±0.0090  best 0.5690  pat 0/20  elapsed 6m40s  ETA 13m21s
+[gos_v2_5w1s_cosine_k5]  ep  10500/30000  ( 35.0%)  loss 2.4008  val_auc 0.5667±0.0094  best 0.5690  pat 1/20  elapsed 7m00s  ETA 13m01s
+[gos_v2_5w1s_cosine_k5]  ep  11000/30000  ( 36.7%)  loss 2.3971  val_auc 0.5664±0.0095  best 0.5690  pat 2/20  elapsed 7m21s  ETA 12m41s
+[gos_v2_5w1s_cosine_k5]  ep  11500/30000  ( 38.3%)  loss 2.3906  val_auc 0.5707±0.0094  best 0.5690  pat 3/20  elapsed 7m41s  ETA 12m22s
+[gos_v2_5w1s_cosine_k5]  ep  12000/30000  ( 40.0%)  loss 2.3904  val_auc 0.5682±0.0090  best 0.5707  pat 0/20  elapsed 8m02s  ETA 12m03s
+[gos_v2_5w1s_cosine_k5]  ep  12500/30000  ( 41.7%)  loss 2.3953  val_auc 0.5755±0.0093  best 0.5707  pat 1/20  elapsed 8m22s  ETA 11m43s
+[gos_v2_5w1s_cosine_k5]  ep  13000/30000  ( 43.3%)  loss 2.3955  val_auc 0.5673±0.0098  best 0.5755  pat 0/20  elapsed 8m42s  ETA 11m23s
+[gos_v2_5w1s_cosine_k5]  ep  13500/30000  ( 45.0%)  loss 2.3898  val_auc 0.5610±0.0093  best 0.5755  pat 1/20  elapsed 9m02s  ETA 11m03s
+[gos_v2_5w1s_cosine_k5]  ep  14000/30000  ( 46.7%)  loss 2.3887  val_auc 0.5753±0.0098  best 0.5755  pat 2/20  elapsed 9m23s  ETA 10m43s
+[gos_v2_5w1s_cosine_k5]  ep  14500/30000  ( 48.3%)  loss 2.3940  val_auc 0.5759±0.0094  best 0.5755  pat 3/20  elapsed 9m43s  ETA 10m23s
+[gos_v2_5w1s_cosine_k5]  ep  15000/30000  ( 50.0%)  loss 2.3910  val_auc 0.5729±0.0092  best 0.5759  pat 0/20  elapsed 10m03s  ETA 10m03s
+[gos_v2_5w1s_cosine_k5]  ep  15500/30000  ( 51.7%)  loss 2.3908  val_auc 0.5791±0.0097  best 0.5759  pat 1/20  elapsed 10m24s  ETA 9m43s
+[gos_v2_5w1s_cosine_k5]  ep  16000/30000  ( 53.3%)  loss 2.3824  val_auc 0.5820±0.0093  best 0.5791  pat 0/20  elapsed 10m44s  ETA 9m23s
+[gos_v2_5w1s_cosine_k5]  ep  16500/30000  ( 55.0%)  loss 2.3896  val_auc 0.5761±0.0093  best 0.5820  pat 0/20  elapsed 11m04s  ETA 9m03s
+[gos_v2_5w1s_cosine_k5]  ep  17000/30000  ( 56.7%)  loss 2.3894  val_auc 0.5819±0.0100  best 0.5820  pat 1/20  elapsed 11m25s  ETA 8m43s
+[gos_v2_5w1s_cosine_k5]  ep  17500/30000  ( 58.3%)  loss 2.3851  val_auc 0.5764±0.0096  best 0.5820  pat 2/20  elapsed 11m45s  ETA 8m23s
+[gos_v2_5w1s_cosine_k5]  ep  18000/30000  ( 60.0%)  loss 2.3886  val_auc 0.5863±0.0090  best 0.5820  pat 3/20  elapsed 12m05s  ETA 8m03s
+[gos_v2_5w1s_cosine_k5]  ep  18500/30000  ( 61.7%)  loss 2.3840  val_auc 0.5875±0.0097  best 0.5863  pat 0/20  elapsed 12m25s  ETA 7m43s
+[gos_v2_5w1s_cosine_k5]  ep  19000/30000  ( 63.3%)  loss 2.3810  val_auc 0.5802±0.0092  best 0.5875  pat 0/20  elapsed 12m45s  ETA 7m23s
+[gos_v2_5w1s_cosine_k5]  ep  19500/30000  ( 65.0%)  loss 2.3764  val_auc 0.5792±0.0096  best 0.5875  pat 1/20  elapsed 13m06s  ETA 7m03s
+[gos_v2_5w1s_cosine_k5]  ep  20000/30000  ( 66.7%)  loss 2.3816  val_auc 0.5913±0.0094  best 0.5875  pat 2/20  elapsed 13m26s  ETA 6m43s
+[gos_v2_5w1s_cosine_k5]  ep  20500/30000  ( 68.3%)  loss 2.3817  val_auc 0.5755±0.0093  best 0.5913  pat 0/20  elapsed 13m46s  ETA 6m22s
+[gos_v2_5w1s_cosine_k5]  ep  21000/30000  ( 70.0%)  loss 2.3736  val_auc 0.5816±0.0099  best 0.5913  pat 1/20  elapsed 14m05s  ETA 6m02s
+[gos_v2_5w1s_cosine_k5]  ep  21500/30000  ( 71.7%)  loss 2.3743  val_auc 0.5871±0.0092  best 0.5913  pat 2/20  elapsed 14m26s  ETA 5m42s
+[gos_v2_5w1s_cosine_k5]  ep  22000/30000  ( 73.3%)  loss 2.3738  val_auc 0.5803±0.0100  best 0.5913  pat 3/20  elapsed 14m46s  ETA 5m22s
+[gos_v2_5w1s_cosine_k5]  ep  22500/30000  ( 75.0%)  loss 2.3780  val_auc 0.5785±0.0096  best 0.5913  pat 4/20  elapsed 15m06s  ETA 5m02s
+[gos_v2_5w1s_cosine_k5]  ep  23000/30000  ( 76.7%)  loss 2.3640  val_auc 0.5769±0.0093  best 0.5913  pat 5/20  elapsed 15m26s  ETA 4m42s
+[gos_v2_5w1s_cosine_k5]  ep  23500/30000  ( 78.3%)  loss 2.3664  val_auc 0.5907±0.0097  best 0.5913  pat 6/20  elapsed 15m46s  ETA 4m21s
+[gos_v2_5w1s_cosine_k5]  ep  24000/30000  ( 80.0%)  loss 2.3670  val_auc 0.5846±0.0094  best 0.5913  pat 7/20  elapsed 16m07s  ETA 4m01s
+[gos_v2_5w1s_cosine_k5]  ep  24500/30000  ( 81.7%)  loss 2.3718  val_auc 0.5942±0.0094  best 0.5913  pat 8/20  elapsed 16m27s  ETA 3m41s
+[gos_v2_5w1s_cosine_k5]  ep  25000/30000  ( 83.3%)  loss 2.3725  val_auc 0.5954±0.0100  best 0.5942  pat 0/20  elapsed 16m47s  ETA 3m21s
+[gos_v2_5w1s_cosine_k5]  ep  25500/30000  ( 85.0%)  loss 2.3688  val_auc 0.5848±0.0094  best 0.5954  pat 0/20  elapsed 17m07s  ETA 3m01s
+[gos_v2_5w1s_cosine_k5]  ep  26000/30000  ( 86.7%)  loss 2.3685  val_auc 0.5892±0.0098  best 0.5954  pat 1/20  elapsed 17m27s  ETA 2m41s
+[gos_v2_5w1s_cosine_k5]  ep  26500/30000  ( 88.3%)  loss 2.3649  val_auc 0.5883±0.0087  best 0.5954  pat 2/20  elapsed 17m48s  ETA 2m21s
+[gos_v2_5w1s_cosine_k5]  ep  27000/30000  ( 90.0%)  loss 2.3644  val_auc 0.5929±0.0094  best 0.5954  pat 3/20  elapsed 18m08s  ETA 2m00s
+[gos_v2_5w1s_cosine_k5]  ep  27500/30000  ( 91.7%)  loss 2.3709  val_auc 0.5964±0.0095  best 0.5954  pat 4/20  elapsed 18m28s  ETA 1m40s
+[gos_v2_5w1s_cosine_k5]  ep  28000/30000  ( 93.3%)  loss 2.3667  val_auc 0.5735±0.0093  best 0.5964  pat 0/20  elapsed 18m48s  ETA 1m20s
+[gos_v2_5w1s_cosine_k5]  ep  28500/30000  ( 95.0%)  loss 2.3682  val_auc 0.5926±0.0097  best 0.5964  pat 1/20  elapsed 19m09s  ETA 1m00s
+[gos_v2_5w1s_cosine_k5]  ep  29000/30000  ( 96.7%)  loss 2.3592  val_auc 0.5894±0.0096  best 0.5964  pat 2/20  elapsed 19m29s  ETA 0m40s
+[gos_v2_5w1s_cosine_k5]  ep  29500/30000  ( 98.3%)  loss 2.3657  val_auc 0.6031±0.0095  best 0.5964  pat 3/20  elapsed 19m50s  ETA 0m20s
+[gos_v2_5w1s_cosine_k5]  ep  30000/30000  (100.0%)  loss 2.3563  val_auc 0.5843±0.0091  best 0.6031  pat 0/20  elapsed 20m10s  ETA 0m00s
+
+Training complete. Best val AUC: 0.6031
+Checkpoint: ./checkpoints/gos_v2_5w1s_cosine_k5_best.pt
+History: ./logs_v2/gos_v2_5w1s_cosine_k5_history.json

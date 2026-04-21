@@ -1,0 +1,23 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 3.6s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 153,729
+
+=== Training ===
+[resume] loading ./checkpoints/gos_v2_5w5s_cosine_k5_last.pt
+Traceback (most recent call last):
+  File "/mnt/data/clqin/code-cache/proj-mol/train.py", line 358, in <module>
+    main()
+  File "/mnt/data/clqin/code-cache/proj-mol/train.py", line 228, in main
+    model.load_state_dict(state["model_state_dict"])
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2629, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for GraphOfShotsV2:
+	Unexpected key(s) in state_dict: "meta_gnns.0.convs.1.att_src", "meta_gnns.0.convs.1.att_dst", "meta_gnns.0.convs.1.bias", "meta_gnns.0.convs.1.lin.weight", "meta_gnns.0.convs.0.att_src", "meta_gnns.0.convs.0.att_dst", "meta_gnns.0.bns.1.weight", "meta_gnns.0.bns.1.bias", "meta_gnns.0.bns.1.running_mean", "meta_gnns.0.bns.1.running_var", "meta_gnns.0.bns.1.num_batches_tracked", "meta_gnns.1.convs.1.att_src", "meta_gnns.1.convs.1.att_dst", "meta_gnns.1.convs.1.bias", "meta_gnns.1.convs.1.lin.weight", "meta_gnns.1.convs.0.att_src", "meta_gnns.1.convs.0.att_dst", "meta_gnns.1.bns.1.weight", "meta_gnns.1.bns.1.bias", "meta_gnns.1.bns.1.running_mean", "meta_gnns.1.bns.1.running_var", "meta_gnns.1.bns.1.num_batches_tracked". 

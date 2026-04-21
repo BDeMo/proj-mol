@@ -9,7 +9,7 @@ import torch.nn.functional as F
 from tqdm import tqdm
 
 from config import get_args
-from utils import set_seed, compute_episode_auc
+from utils import set_seed, compute_episode_auc, build_exp_name
 from data import load_all_datasets, split_tasks, EpisodeSampler
 from train import build_model, run_episode
 
@@ -46,9 +46,8 @@ def main():
     # Build and load model
     model = build_model(args).to(device)
 
-    exp_name = f"{args.method}_{args.n_way}w{args.k_shot}s"
-    if args.method == "gos":
-        exp_name += f"_{args.affinity}_k{args.meta_k}"
+    exp_name = build_exp_name(args)
+    print(f"[exp_name] {exp_name}")
 
     ckpt_path = extra_args.checkpoint or os.path.join(
         args.save_dir, f"{exp_name}_best.pt"

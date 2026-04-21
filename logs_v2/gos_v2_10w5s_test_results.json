@@ -1,0 +1,19 @@
+{
+  "method": "gos_v2",
+  "n_way": 10,
+  "k_shot": 5,
+  "datasets": [
+    "tox21",
+    "toxcast",
+    "muv",
+    "sider"
+  ],
+  "affinity": null,
+  "meta_k": null,
+  "episodes": 1000,
+  "roc_auc_mean": 0.5784666666666667,
+  "roc_auc_std": 0.10507267091322797,
+  "roc_auc_ci95": 0.006512471614493243,
+  "accuracy_mean": 0.16000000335276127,
+  "accuracy_ci95": 0.007147956526679527
+}

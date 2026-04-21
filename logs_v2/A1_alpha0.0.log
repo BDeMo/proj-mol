@@ -1,0 +1,42 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 4.4s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 188,289
+
+=== Training ===
+[resume] no checkpoint at ./checkpoints/gos_v2_5w5s_cosine_k5_last.pt — training from scratch
+[gos_v2_5w5s_cosine_k5] training 30000 episodes (start 1, eval every 500, patience 20)
+[gos_v2_5w5s_cosine_k5]  ep    500/30000  (  1.7%)  loss nan  val_auc 0.5000±0.0000  best 0.0000  pat 0/20  elapsed 0m19s  ETA 19m36s
+[gos_v2_5w5s_cosine_k5]  ep   1000/30000  (  3.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 0/20  elapsed 0m39s  ETA 18m52s
+[gos_v2_5w5s_cosine_k5]  ep   1500/30000  (  5.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 1/20  elapsed 0m58s  ETA 18m23s
+[gos_v2_5w5s_cosine_k5]  ep   2000/30000  (  6.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 2/20  elapsed 1m17s  ETA 17m58s
+[gos_v2_5w5s_cosine_k5]  ep   2500/30000  (  8.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 3/20  elapsed 1m35s  ETA 17m32s
+[gos_v2_5w5s_cosine_k5]  ep   3000/30000  ( 10.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 4/20  elapsed 1m54s  ETA 17m13s
+[gos_v2_5w5s_cosine_k5]  ep   3500/30000  ( 11.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 5/20  elapsed 2m14s  ETA 16m55s
+[gos_v2_5w5s_cosine_k5]  ep   4000/30000  ( 13.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 6/20  elapsed 2m33s  ETA 16m36s
+[gos_v2_5w5s_cosine_k5]  ep   4500/30000  ( 15.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 7/20  elapsed 2m52s  ETA 16m15s
+[gos_v2_5w5s_cosine_k5]  ep   5000/30000  ( 16.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 8/20  elapsed 3m10s  ETA 15m54s
+[gos_v2_5w5s_cosine_k5]  ep   5500/30000  ( 18.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 9/20  elapsed 3m29s  ETA 15m35s
+[gos_v2_5w5s_cosine_k5]  ep   6000/30000  ( 20.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 10/20  elapsed 3m48s  ETA 15m15s
+[gos_v2_5w5s_cosine_k5]  ep   6500/30000  ( 21.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 11/20  elapsed 4m07s  ETA 14m56s
+[gos_v2_5w5s_cosine_k5]  ep   7000/30000  ( 23.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 12/20  elapsed 4m27s  ETA 14m37s
+[gos_v2_5w5s_cosine_k5]  ep   7500/30000  ( 25.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 13/20  elapsed 4m46s  ETA 14m18s
+[gos_v2_5w5s_cosine_k5]  ep   8000/30000  ( 26.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 14/20  elapsed 5m05s  ETA 13m59s
+[gos_v2_5w5s_cosine_k5]  ep   8500/30000  ( 28.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 15/20  elapsed 5m24s  ETA 13m40s
+[gos_v2_5w5s_cosine_k5]  ep   9000/30000  ( 30.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 16/20  elapsed 5m43s  ETA 13m21s
+[gos_v2_5w5s_cosine_k5]  ep   9500/30000  ( 31.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 17/20  elapsed 6m03s  ETA 13m03s
+[gos_v2_5w5s_cosine_k5]  ep  10000/30000  ( 33.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 18/20  elapsed 6m22s  ETA 12m44s
+[gos_v2_5w5s_cosine_k5]  ep  10500/30000  ( 35.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 19/20  elapsed 6m41s  ETA 12m24s
+
+Early stopping at episode 10500 (best val AUC: 0.5000)
+
+Training complete. Best val AUC: 0.5000
+Checkpoint: ./checkpoints/gos_v2_5w5s_cosine_k5_best.pt
+History: ./logs_v2/gos_v2_5w5s_cosine_k5_history.json

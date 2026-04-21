@@ -1,0 +1,26 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 3.6s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 188,289
+
+=== Training ===
+[resume] loading ./checkpoints/gos_v2_5w5s_cosine_k5_last.pt
+[resume] starting from episode 27001, best val AUC so far 0.7061
+[gos_v2_5w5s_cosine_k5] training 30000 episodes (start 27001, eval every 500, patience 20)
+[gos_v2_5w5s_cosine_k5]  ep  27500/30000  ( 91.7%)  loss 2.0855  val_auc 0.7040±0.0090  best 0.7061  pat 4/20  elapsed 0m20s  ETA 0m01s
+[gos_v2_5w5s_cosine_k5]  ep  28000/30000  ( 93.3%)  loss 2.1017  val_auc 0.6963±0.0093  best 0.7061  pat 5/20  elapsed 0m41s  ETA 0m02s
+[gos_v2_5w5s_cosine_k5]  ep  28500/30000  ( 95.0%)  loss 2.0936  val_auc 0.7087±0.0093  best 0.7061  pat 6/20  elapsed 1m01s  ETA 0m03s
+[gos_v2_5w5s_cosine_k5]  ep  29000/30000  ( 96.7%)  loss 2.0790  val_auc 0.6958±0.0092  best 0.7087  pat 0/20  elapsed 1m22s  ETA 0m02s
+[gos_v2_5w5s_cosine_k5]  ep  29500/30000  ( 98.3%)  loss 2.0931  val_auc 0.6998±0.0096  best 0.7087  pat 1/20  elapsed 1m48s  ETA 0m01s
+[gos_v2_5w5s_cosine_k5]  ep  30000/30000  (100.0%)  loss 2.0672  val_auc 0.6931±0.0090  best 0.7087  pat 2/20  elapsed 2m09s  ETA 0m00s
+
+Training complete. Best val AUC: 0.7087
+Checkpoint: ./checkpoints/gos_v2_5w5s_cosine_k5_best.pt
+History: ./logs_v2/gos_v2_5w5s_cosine_k5_history.json
