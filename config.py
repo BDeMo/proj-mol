@@ -37,7 +37,27 @@ def get_args():
 
     # Method
     p.add_argument("--method", type=str, default="gos",
-                   choices=["proto", "maml", "gos"])
+                   choices=["proto", "maml", "gos", "gos_v2"])
+
+    # ── GoS v2 toggles ───────────────────────────────────────────────
+    p.add_argument("--v2_alpha_init", type=float, default=0.7,
+                   help="M1: residual prototype coefficient initial value")
+    p.add_argument("--v2_gnn_type", type=str, default="gat",
+                   choices=["gcn", "gat"],
+                   help="M2: meta-GNN backbone (gat = shallower / self-normalising)")
+    p.add_argument("--v2_bipartite", action="store_true",
+                   help="M3: drop edges originating from query nodes")
+    p.add_argument("--v2_no_bipartite", dest="v2_bipartite",
+                   action="store_false")
+    p.set_defaults(v2_bipartite=True)
+    p.add_argument("--v2_contrastive_lambda", type=float, default=0.5,
+                   help="M4: weight of InfoNCE auxiliary loss (0 disables)")
+    p.add_argument("--v2_contrastive_temp", type=float, default=0.1,
+                   help="M4: temperature for InfoNCE")
+    p.add_argument("--ssl_ckpt", type=str, default=None,
+                   help="M5: path to SSL-pretrained encoder state_dict")
+    p.add_argument("--freeze_encoder", action="store_true",
+                   help="freeze encoder during episodic training")
 
     # MAML-specific
     p.add_argument("--maml_inner_lr", type=float, default=0.01)

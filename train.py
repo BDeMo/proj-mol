@@ -11,7 +11,10 @@ from tqdm import tqdm
 from config import get_args
 from utils import set_seed, compute_episode_auc, ensure_dir
 from data import load_all_datasets, split_tasks, EpisodeSampler
-from models import MPNNEncoder, PrototypicalNetwork, MAMLClassifier, GraphOfShots
+from models import (
+    MPNNEncoder, PrototypicalNetwork, MAMLClassifier,
+    GraphOfShots, GraphOfShotsV2,
+)
 
 
 def build_model(args):
@@ -40,8 +43,37 @@ def build_model(args):
             meta_gnn_layers=args.meta_gnn_layers,
             refine_steps=args.refine_steps,
         )
+    elif args.method == "gos_v2":
+        model = GraphOfShotsV2(
+            encoder,
+            affinity_method=args.affinity,
+            meta_k=args.meta_k,
+            n_way=args.n_way,
+            meta_gnn_layers=args.meta_gnn_layers,
+            refine_steps=args.refine_steps,
+            residual_alpha_init=args.v2_alpha_init,
+            meta_gnn_type=args.v2_gnn_type,
+            bipartite=args.v2_bipartite,
+            contrastive_lambda=args.v2_contrastive_lambda,
+            contrastive_temp=args.v2_contrastive_temp,
+        )
     else:
         raise ValueError(f"Unknown method: {args.method}")
+
+    # M5: load SSL-pretrained encoder weights if provided
+    if getattr(args, "ssl_ckpt", None):
+        import os
+        if os.path.exists(args.ssl_ckpt):
+            state = torch.load(args.ssl_ckpt, map_location="cpu",
+                               weights_only=False)
+            model.encoder.load_state_dict(state)
+            print(f"Loaded SSL-pretrained encoder from {args.ssl_ckpt}")
+        else:
+            print(f"WARNING: SSL ckpt not found: {args.ssl_ckpt}")
+    if getattr(args, "freeze_encoder", False):
+        for p in model.encoder.parameters():
+            p.requires_grad = False
+        print("Encoder frozen.")
     return model
 
 
