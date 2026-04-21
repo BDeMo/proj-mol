@@ -14,47 +14,63 @@ from torch_geometric.data import Data, Batch
 
 
 # ── Augmentations ──────────────────────────────────────────────────────
+def _slim(data: Data) -> Data:
+    """Return a Data with only the graph-level tensors we need for SSL.
+
+    Stripping per-graph attributes like ``y`` and ``smiles`` avoids
+    PyG Batch collate failures (some MoleculeNet items have str attrs,
+    others don't after augmentation).
+    """
+    kwargs = {"x": data.x.float() if data.x is not None else None,
+              "edge_index": data.edge_index}
+    if getattr(data, "edge_attr", None) is not None:
+        kwargs["edge_attr"] = data.edge_attr.float()
+    return Data(**kwargs)
+
+
 def drop_nodes(data: Data, p: float = 0.15) -> Data:
     """Randomly drop a fraction of nodes and their incident edges."""
-    n = data.num_nodes
+    d = _slim(data)
+    n = d.num_nodes
     if n <= 2:
-        return data
+        return d
     keep = torch.rand(n) > p
-    keep[torch.randint(0, n, (1,))] = True  # always keep at least one
+    if not keep.any():
+        keep[torch.randint(0, n, (1,))] = True
     idx_map = -torch.ones(n, dtype=torch.long)
-    idx_map[keep] = torch.arange(keep.sum())
+    idx_map[keep] = torch.arange(int(keep.sum()))
 
-    ei = data.edge_index
+    ei = d.edge_index
     mask = keep[ei[0]] & keep[ei[1]]
-    new_ei = idx_map[ei[:, mask]]
-    new_x = data.x[keep]
-    new_attr = data.edge_attr[mask] if hasattr(data, 'edge_attr') and data.edge_attr is not None else None
-    return Data(x=new_x, edge_index=new_ei, edge_attr=new_attr)
+    d.x = d.x[keep]
+    d.edge_index = idx_map[ei[:, mask]]
+    if getattr(d, "edge_attr", None) is not None:
+        d.edge_attr = d.edge_attr[mask]
+    return d
 
 
 def mask_atoms(data: Data, p: float = 0.15) -> Data:
     """Zero out feature vectors of a random subset of atoms."""
-    d = data.clone()
+    d = _slim(data)
     n = d.num_nodes
+    if n == 0:
+        return d
     mask = torch.rand(n) < p
-    d.x = d.x.clone().float()
+    d.x = d.x.clone()
     d.x[mask] = 0.0
     return d
 
 
 def drop_edges(data: Data, p: float = 0.15) -> Data:
     """Randomly remove a fraction of edges."""
-    ei = data.edge_index
-    m = ei.size(1)
+    d = _slim(data)
+    m = d.edge_index.size(1)
     if m == 0:
-        return data
+        return d
     keep = torch.rand(m) > p
-    new_ei = ei[:, keep]
-    new_attr = data.edge_attr[keep] if hasattr(data, 'edge_attr') and data.edge_attr is not None else None
-    d = data.clone()
-    d.edge_index = new_ei
-    if new_attr is not None:
-        d.edge_attr = new_attr
+    d.edge_index = d.edge_index[:, keep]
+    if getattr(d, "edge_attr", None) is not None:
+        d.edge_attr = d.edge_attr[keep]
     return d
 
 
@@ -128,10 +144,20 @@ def pretrain_encoder(
         losses = []
         for i in range(0, N, batch_size):
             idx = perm[i:i + batch_size].tolist()
-            v1, v2 = zip(*(two_views(graphs[j]) for j in idx))
-            b1 = Batch.from_data_list(list(v1)).to(device)
-            b2 = Batch.from_data_list(list(v2)).to(device)
-            # skip degenerate batches (all atoms dropped)
+            views = []
+            for j in idx:
+                a, b = two_views(graphs[j])
+                if a.num_nodes > 0 and b.num_nodes > 0:
+                    views.append((a, b))
+            if len(views) < 2:
+                continue
+            v1, v2 = zip(*views)
+            try:
+                b1 = Batch.from_data_list(list(v1)).to(device)
+                b2 = Batch.from_data_list(list(v2)).to(device)
+            except Exception as e:
+                # skip any collate failure from PyG on heterogeneous attrs
+                continue
             if b1.x.size(0) == 0 or b2.x.size(0) == 0:
                 continue
             h1 = proj(encoder(b1))
