@@ -1,0 +1,308 @@
+==============================================
+Stage 4: Evaluation & Analysis
+==============================================
+--- Main Evaluation (1000 meta-test episodes) ---
+
+>> proto 5-way 1-shot
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded checkpoint from episode 29000 (val AUC: 0.5855)
+
+=== Meta-Test Evaluation (1000 episodes) ===
+
+==================================================
+Method: proto | 5-way 1-shot
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.5791 ± 0.0066 (std: 0.1062)
+Accuracy: 0.2697 ± 0.0074
+==================================================
+Results saved to ./logs/proto_5w1s_test_results.json
+
+>> proto 5-way 5-shot
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded checkpoint from episode 29500 (val AUC: 0.7160)
+
+=== Meta-Test Evaluation (1000 episodes) ===
+
+==================================================
+Method: proto | 5-way 5-shot
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.7012 ± 0.0067 (std: 0.1076)
+Accuracy: 0.3905 ± 0.0090
+==================================================
+Results saved to ./logs/proto_5w5s_test_results.json
+
+>> proto 10-way 5-shot
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded checkpoint from episode 28500 (val AUC: 0.6995)
+
+=== Meta-Test Evaluation (1000 episodes) ===
+
+==================================================
+Method: proto | 10-way 5-shot
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.6795 ± 0.0065 (std: 0.1049)
+Accuracy: 0.2505 ± 0.0082
+==================================================
+Results saved to ./logs/proto_10w5s_test_results.json
+
+>> maml 5-way 1-shot
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded checkpoint from episode 4500 (val AUC: 0.5124)
+
+=== Meta-Test Evaluation (1000 episodes) ===
+
+==================================================
+Method: maml | 5-way 1-shot
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.5031 ± 0.0061 (std: 0.0976)
+Accuracy: 0.1999 ± 0.0045
+==================================================
+Results saved to ./logs/maml_5w1s_test_results.json
+
+>> maml 5-way 5-shot
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded checkpoint from episode 1000 (val AUC: 0.5131)
+
+=== Meta-Test Evaluation (1000 episodes) ===
+
+==================================================
+Method: maml | 5-way 5-shot
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.5111 ± 0.0060 (std: 0.0962)
+Accuracy: 0.1977 ± 0.0054
+==================================================
+Results saved to ./logs/maml_5w5s_test_results.json
+
+>> maml 10-way 5-shot
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded checkpoint from episode 8000 (val AUC: 0.5125)
+
+=== Meta-Test Evaluation (1000 episodes) ===
+
+==================================================
+Method: maml | 10-way 5-shot
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.4990 ± 0.0065 (std: 0.1047)
+Accuracy: 0.0975 ± 0.0048
+==================================================
+Results saved to ./logs/maml_10w5s_test_results.json
+
+>> gos 5-way 1-shot
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded checkpoint from episode 18000 (val AUC: 0.5356)
+
+=== Meta-Test Evaluation (1000 episodes) ===
+
+==================================================
+Method: gos | 5-way 1-shot
+Affinity: cosine | meta_k: 5
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.5353 ± 0.0059 (std: 0.0959)
+Accuracy: 0.2252 ± 0.0066
+==================================================
+Results saved to ./logs/gos_5w1s_cosine_k5_test_results.json
+
+>> gos 5-way 5-shot
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded checkpoint from episode 6000 (val AUC: 0.5717)
+
+=== Meta-Test Evaluation (1000 episodes) ===
+
+==================================================
+Method: gos | 5-way 5-shot
+Affinity: cosine | meta_k: 5
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.5690 ± 0.0062 (std: 0.1002)
+Accuracy: 0.2642 ± 0.0071
+==================================================
+Results saved to ./logs/gos_5w5s_cosine_k5_test_results.json
+
+>> gos 10-way 5-shot
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded checkpoint from episode 5000 (val AUC: 0.5802)
+
+=== Meta-Test Evaluation (1000 episodes) ===
+
+==================================================
+Method: gos | 10-way 5-shot
+Affinity: cosine | meta_k: 5
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.5674 ± 0.0064 (std: 0.1031)
+Accuracy: 0.1544 ± 0.0065
+==================================================
+Results saved to ./logs/gos_10w5s_cosine_k5_test_results.json
+
+==============================================
+Running Ablation Suite
+==============================================
+
+============================================================
+Running: gos_5w5s_cosine_k5
+============================================================
+  CMD: /home/syw3ev/.conda/envs/gos/bin/python train.py --datasets tox21 toxcast muv sider --method gos --n_way 5 --k_shot 5 --affinity cosine --meta_k 5 --log_dir ./ablation_results --save_dir ./ablation_results/checkpoints
+tasks
+  meta-test: 134 tasks
+Model parameters: 187,264
+
+=== Training ===
+
+Early stopping at episode 23500 (best val AUC: 0.5786)
+
+Training complete. Best val AUC: 0.5786
+Checkpoint: ./ablation_results/checkpoints/gos_5w5s_cosine_k5_best.pt
+History: ./ablation_results/gos_5w5s_cosine_k5_history.json
+
+ gos | 5-way 5-shot
+Affinity: cosine | meta_k: 5
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.5714 ± 0.0064 (std: 0.1027)
+Accuracy: 0.2632 ± 0.0070
+==================================================
+Results saved to ./ablation_results/gos_5w5s_cosine_k5_test_results.json
+
+
+============================================================
+Running: gos_5w5s_bilinear_k5
+============================================================
+  CMD: /home/syw3ev/.conda/envs/gos/bin/python train.py --datasets tox21 toxcast muv sider --method gos --n_way 5 --k_shot 5 --affinity bilinear --meta_k 5 --log_dir ./ablation_results --save_dir ./ablation_results/checkpoints
+s
+  meta-test: 134 tasks
+Model parameters: 220,032
+
+=== Training ===
+
+Early stopping at episode 18500 (best val AUC: 0.5871)
+
+Training complete. Best val AUC: 0.5871
+Checkpoint: ./ablation_results/checkpoints/gos_5w5s_bilinear_k5_best.pt
+History: ./ablation_results/gos_5w5s_bilinear_k5_history.json
+
+ | 5-way 5-shot
+Affinity: bilinear | meta_k: 5
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.5754 ± 0.0064 (std: 0.1034)
+Accuracy: 0.2643 ± 0.0070
+==================================================
+Results saved to ./ablation_results/gos_5w5s_bilinear_k5_test_results.json
+
+
+============================================================
+Running: gos_5w5s_attention_k5
+============================================================
+  CMD: /home/syw3ev/.conda/envs/gos/bin/python train.py --datasets tox21 toxcast muv sider --method gos --n_way 5 --k_shot 5 --affinity attention --meta_k 5 --log_dir ./ablation_results --save_dir ./ablation_results/checkpoints
+  meta-test: 134 tasks
+Model parameters: 253,312
+
+=== Training ===
+
+Early stopping at episode 21500 (best val AUC: 0.5792)
+
+Training complete. Best val AUC: 0.5792
+Checkpoint: ./ablation_results/checkpoints/gos_5w5s_attention_k5_best.pt
+History: ./ablation_results/gos_5w5s_attention_k5_history.json
+
+ 5-way 5-shot
+Affinity: attention | meta_k: 5
+Datasets: ['tox21', 'toxcast', 'muv', 'sider']
+Episodes: 1000
+ROC-AUC: 0.5617 ± 0.0061 (std: 0.0990)
+Accuracy: 0.2537 ± 0.0070
+==================================================
+Results saved to ./ablation_results/gos_5w5s_attention_k5_test_results.json
+
+
+============================================================
+ABLATION RESULTS SUMMARY
+============================================================
+
+Method          Config               ROC-AUC     Accuracy
+---------------------------------------------------------
+gos(cos)[k=5]   5w5s            0.5714±0.0064 0.2632±0.0070
+gos(bil)[k=5]   5w5s            0.5754±0.0064 0.2643±0.0070
+gos(att)[k=5]   5w5s            0.5617±0.0061 0.2537±0.0070
+  Plot saved: ./ablation_results/convergence_affinity.png
+
+Full results saved to ./ablation_results/ablation_summary.json

@@ -1,0 +1,310 @@
+==============================================
+Stage 3: Graph-of-Shots Training
+==============================================
+Config: 5-way 1-shot, affinity=cosine, meta_k=5, refine=2, episodes=30000
+Device: cuda:1
+Method: gos | 5-way 1-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:1 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 187,264
+
+=== Training ===
+
+Early stopping at episode 28000 (best val AUC: 0.5356)
+
+Training complete. Best val AUC: 0.5356
+Checkpoint: ./checkpoints/gos_5w1s_cosine_k5_best.pt
+History: ./logs/gos_5w1s_cosine_k5_history.json
+
+=== Stage 3 Complete ===
+Checkpoint saved in ./checkpoints/
+==============================================
+Stage 3: Graph-of-Shots Training
+==============================================
+Config: 5-way 5-shot, affinity=cosine, meta_k=5, refine=2, episodes=30000
+Device: cuda:1
+Method: gos | 5-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:1 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 187,264
+
+=== Training ===
+
+Early stopping at episode 16000 (best val AUC: 0.5717)
+
+Training complete. Best val AUC: 0.5717
+Checkpoint: ./checkpoints/gos_5w5s_cosine_k5_best.pt
+History: ./logs/gos_5w5s_cosine_k5_history.json
+
+=== Stage 3 Complete ===
+Checkpoint saved in ./checkpoints/
+==============================================
+Stage 3: Graph-of-Shots Training
+==============================================
+Config: 10-way 5-shot, affinity=cosine, meta_k=5, refine=2, episodes=30000
+Device: cuda:1
+Method: gos | 10-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:1 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 188,544
+
+=== Training ===
+
+Early stopping at episode 15000 (best val AUC: 0.5802)
+
+Training complete. Best val AUC: 0.5802
+Checkpoint: ./checkpoints/gos_10w5s_cosine_k5_best.pt
+History: ./logs/gos_10w5s_cosine_k5_history.json
+
+=== Stage 3 Complete ===
+Checkpoint saved in ./checkpoints/
+==============================================
+Stage 3: Graph-of-Shots Training
+==============================================
+Config: 5-way 5-shot, affinity=bilinear, meta_k=5, refine=2, episodes=30000
+Device: cuda:1
+Method: gos | 5-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:1 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 220,032
+
+=== Training ===
+
+Early stopping at episode 19000 (best val AUC: 0.5646)
+
+Training complete. Best val AUC: 0.5646
+Checkpoint: ./checkpoints/gos_5w5s_bilinear_k5_best.pt
+History: ./logs/gos_5w5s_bilinear_k5_history.json
+
+=== Stage 3 Complete ===
+Checkpoint saved in ./checkpoints/
+==============================================
+Stage 3: Graph-of-Shots Training
+==============================================
+Config: 5-way 5-shot, affinity=attention, meta_k=5, refine=2, episodes=30000
+Device: cuda:1
+Method: gos | 5-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:1 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 253,312
+
+=== Training ===
+
+Early stopping at episode 14500 (best val AUC: 0.5952)
+
+Training complete. Best val AUC: 0.5952
+Checkpoint: ./checkpoints/gos_5w5s_attention_k5_best.pt
+History: ./logs/gos_5w5s_attention_k5_history.json
+
+=== Stage 3 Complete ===
+Checkpoint saved in ./checkpoints/
+==============================================
+Stage 3: Graph-of-Shots Training
+==============================================
+Config: 5-way 5-shot, affinity=cosine, meta_k=3, refine=2, episodes=30000
+Device: cuda:1
+Method: gos | 5-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:1 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 187,264
+
+=== Training ===
+
+Early stopping at episode 14500 (best val AUC: 0.5819)
+
+Training complete. Best val AUC: 0.5819
+Checkpoint: ./checkpoints/gos_5w5s_cosine_k3_best.pt
+History: ./logs/gos_5w5s_cosine_k3_history.json
+
+=== Stage 3 Complete ===
+Checkpoint saved in ./checkpoints/
+==============================================
+Stage 3: Graph-of-Shots Training
+==============================================
+Config: 5-way 5-shot, affinity=cosine, meta_k=10, refine=2, episodes=30000
+Device: cuda:1
+Method: gos | 5-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:1 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 187,264
+
+=== Training ===
+
+Early stopping at episode 16500 (best val AUC: 0.5618)
+
+Training complete. Best val AUC: 0.5618
+Checkpoint: ./checkpoints/gos_5w5s_cosine_k10_best.pt
+History: ./logs/gos_5w5s_cosine_k10_history.json
+
+=== Stage 3 Complete ===
+Checkpoint saved in ./checkpoints/
+==============================================
+Stage 3: Graph-of-Shots Training
+==============================================
+Config: 5-way 5-shot, affinity=cosine, meta_k=100, refine=2, episodes=30000
+Device: cuda:1
+Method: gos | 5-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:1 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 187,264
+
+=== Training ===
+
+Early stopping at episode 14000 (best val AUC: 0.5446)
+
+Training complete. Best val AUC: 0.5446
+Checkpoint: ./checkpoints/gos_5w5s_cosine_k100_best.pt
+History: ./logs/gos_5w5s_cosine_k100_history.json
+
+=== Stage 3 Complete ===
+Checkpoint saved in ./checkpoints/
+==============================================
+Stage 3: Graph-of-Shots Training
+==============================================
+Config: 5-way 2-shot, affinity=cosine, meta_k=5, refine=2, episodes=30000
+Device: cuda:1
+Method: gos | 5-way 2-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:1 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 187,264
+
+=== Training ===
+
+Early stopping at episode 17000 (best val AUC: 0.5469)
+
+Training complete. Best val AUC: 0.5469
+Checkpoint: ./checkpoints/gos_5w2s_cosine_k5_best.pt
+History: ./logs/gos_5w2s_cosine_k5_history.json
+
+=== Stage 3 Complete ===
+Checkpoint saved in ./checkpoints/
+==============================================
+Stage 3: Graph-of-Shots Training
+==============================================
+Config: 5-way 10-shot, affinity=cosine, meta_k=5, refine=2, episodes=30000
+Device: cuda:1
+Method: gos | 5-way 10-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:1 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 187,264
+
+=== Training ===
+
+Early stopping at episode 16500 (best val AUC: 0.6048)
+
+Training complete. Best val AUC: 0.6048
+Checkpoint: ./checkpoints/gos_5w10s_cosine_k5_best.pt
+History: ./logs/gos_5w10s_cosine_k5_history.json
+
+=== Stage 3 Complete ===
+Checkpoint saved in ./checkpoints/
