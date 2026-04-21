@@ -18,6 +18,20 @@ class TaskInfo:
     num_molecules: int = 0
 
 
+def _slim(g: Data) -> Data:
+    """Keep only the tensors needed for encoding; drop `y` / `smiles`.
+
+    Different MoleculeNet datasets have different y widths (Tox21=12,
+    ToxCast=617, MUV=17, SIDER=27), so cross-dataset episode batches
+    cannot collate `y`.  We store labels in our own task_indices dict,
+    so per-graph `y` is redundant anyway.
+    """
+    kwargs = {"x": g.x, "edge_index": g.edge_index}
+    if getattr(g, "edge_attr", None) is not None:
+        kwargs["edge_attr"] = g.edge_attr
+    return Data(**kwargs)
+
+
 def load_molnet(root: str, name: str, min_pos: int = 16) -> Tuple[List[Data], TaskInfo]:
     """Load a MoleculeNet dataset and build per-task positive/negative molecule indices.
 
@@ -31,23 +45,23 @@ def load_molnet(root: str, name: str, min_pos: int = 16) -> Tuple[List[Data], Ta
         task_info: TaskInfo with per-task positive/negative indices.
     """
     dataset = MoleculeNet(root=root, name=name)
-    graphs = list(dataset)
-    num_molecules = len(graphs)
+    graphs_raw = list(dataset)
+    num_molecules = len(graphs_raw)
 
-    # Determine number of task columns from y
-    sample_y = graphs[0].y
+    # Determine number of task columns from y (read from RAW graphs).
+    sample_y = graphs_raw[0].y
     if sample_y.dim() == 1:
         num_tasks = sample_y.size(0)
     else:
         num_tasks = sample_y.size(1)
 
-    # Build per-task indices
+    # Build per-task indices using raw y BEFORE slimming.
     task_indices: Dict[str, Dict[str, List[int]]] = {}
     for t in range(num_tasks):
         task_id = f"{name}_{t}"
         pos_indices = []
         neg_indices = []
-        for mol_idx, g in enumerate(graphs):
+        for mol_idx, g in enumerate(graphs_raw):
             y = g.y.view(-1)
             val = y[t].item()
             if torch.isnan(torch.tensor(val)):
@@ -56,9 +70,11 @@ def load_molnet(root: str, name: str, min_pos: int = 16) -> Tuple[List[Data], Ta
                 pos_indices.append(mol_idx)
             elif val == 0.0:
                 neg_indices.append(mol_idx)
-        # Filter tasks with too few positives
         if len(pos_indices) >= min_pos:
             task_indices[task_id] = {"pos": pos_indices, "neg": neg_indices}
+
+    # Strip per-graph y/smiles so cross-dataset Batch.from_data_list works.
+    graphs = [_slim(g) for g in graphs_raw]
 
     info = TaskInfo(
         dataset_name=name,
