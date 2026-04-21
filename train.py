@@ -3,10 +3,45 @@
 import os
 import json
 import time
+import sys
 import numpy as np
 import torch
 import torch.nn.functional as F
 from tqdm import tqdm
+
+
+def _fmt_hms(seconds: float) -> str:
+    seconds = max(0, int(seconds))
+    h, r = divmod(seconds, 3600)
+    m, s = divmod(r, 60)
+    if h > 0:
+        return f"{h}h{m:02d}m"
+    return f"{m}m{s:02d}s"
+
+
+def print_progress(tag: str, ep: int, total: int,
+                   loss: float, start_time: float,
+                   val_auc: float = None, val_ci: float = None,
+                   best: float = None, patience: int = 0,
+                   max_patience: int = 20):
+    """One-line plain-text progress. Safe to tee into a log file."""
+    elapsed = time.time() - start_time
+    rate = ep / max(elapsed, 0.01)
+    eta = (total - ep) / max(rate, 1e-6)
+    pct = 100.0 * ep / total
+    parts = [
+        f"[{tag}]",
+        f"ep {ep:>6}/{total}  ({pct:5.1f}%)",
+        f"loss {loss:.4f}",
+    ]
+    if val_auc is not None:
+        parts.append(f"val_auc {val_auc:.4f}±{val_ci:.4f}")
+    if best is not None:
+        parts.append(f"best {best:.4f}")
+        parts.append(f"pat {patience}/{max_patience}")
+    parts.append(f"elapsed {_fmt_hms(elapsed)}")
+    parts.append(f"ETA {_fmt_hms(eta)}")
+    print("  ".join(parts), flush=True)
 
 from config import get_args
 from utils import set_seed, compute_episode_auc, ensure_dir
@@ -207,10 +242,19 @@ def main():
               f"{args.episodes_train}; nothing to do.")
         return
 
-    pbar = tqdm(range(start_ep, args.episodes_train + 1),
-                initial=start_ep - 1, total=args.episodes_train,
-                desc="Training")
+    # Detect non-TTY (log file) — skip tqdm and rely on periodic prints.
+    use_tqdm = sys.stdout.isatty()
+    if use_tqdm:
+        pbar = tqdm(range(start_ep, args.episodes_train + 1),
+                    initial=start_ep - 1, total=args.episodes_train,
+                    desc=exp_name)
+    else:
+        pbar = range(start_ep, args.episodes_train + 1)
+        print(f"[{exp_name}] training {args.episodes_train} episodes "
+              f"(start {start_ep}, eval every {args.eval_every}, "
+              f"patience {args.patience})", flush=True)
     running_loss = 0.0
+    train_start_time = time.time()
 
     def _save_last(ep):
         last_path = os.path.join(args.save_dir, f"{exp_name}_last.pt")
@@ -263,11 +307,19 @@ def main():
             history["val_loss"].append(val_loss)
             history["val_acc"].append(val_acc)
 
-            pbar.set_postfix({
-                "loss": f"{avg_train_loss:.4f}",
-                "val_auc": f"{val_auc:.4f}±{val_ci:.4f}",
-                "val_acc": f"{val_acc:.4f}",
-            })
+            if use_tqdm:
+                pbar.set_postfix({
+                    "loss": f"{avg_train_loss:.4f}",
+                    "val_auc": f"{val_auc:.4f}±{val_ci:.4f}",
+                    "val_acc": f"{val_acc:.4f}",
+                })
+            # Always print a plain progress line — survives into log files.
+            print_progress(exp_name, ep, args.episodes_train,
+                           avg_train_loss, train_start_time,
+                           val_auc=val_auc, val_ci=val_ci,
+                           best=best_val_auc,
+                           patience=patience_counter,
+                           max_patience=args.patience)
 
             improved = val_auc > best_val_auc
             if improved:
