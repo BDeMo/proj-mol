@@ -5,6 +5,7 @@ with whichever matches your task:
 
 | File | Purpose |
 |---|---|
+| [`takeaways.md`](takeaways.md) | One-page summary of the project: motivation → v1 diagnosis → v2 design → results → transferable lessons |
 | [`repo_structure.md`](repo_structure.md) | What lives where — code, scripts, logs, presentation assets |
 | [`results.md`](results.md) | Observed numbers (v1, v2, ablations) with paths to the raw logs that produced them |
 | [`reproduce.md`](reproduce.md) | Step-by-step commands to reproduce every result from a fresh clone |
