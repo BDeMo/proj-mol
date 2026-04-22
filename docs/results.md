@@ -1,0 +1,135 @@
+# Results Summary
+
+All numbers are **meta-val ROC-AUC at the best checkpoint** unless noted.
+Every cell is backed by a specific log file; the "source" column gives
+the path relative to the repo root.
+
+## 1. Main comparison (val AUC)
+
+| Method     | 5w1s | 5w5s | 10w5s | Source |
+|------------|-----:|-----:|------:|---|
+| ProtoNet   | 0.586 | **0.716** | **0.700** | `logs/v1_stages/stage2.log` |
+| FOMAML     | 0.512 | 0.513 | 0.513 | `logs/v1_stages/stage2.log` |
+| GoS v1     | 0.536 | 0.572 | 0.580 | `logs/v1_stages/stage3.log` |
+| v2 no-SSL  | 0.583 | 0.709 | 0.695 | `logs/v2_rerun/v2_*_no-ssl.log` |
+| **v2 + SSL** | **0.603** | **0.728** | **0.712** | `logs/v2_rerun/v2_*_ssl.log` |
+
+**v2 + SSL beats ProtoNet on every config**: +1.7 pp (5w1s), +1.2 pp
+(5w5s), +1.2 pp (10w5s).
+
+Meta-test values (`logs/v1_final_eval/stage4_all.log`) were computed for
+v1 only and tracked val reasonably closely (within ~2 pp). The v2 meta-
+test JSONs in `logs/v2_rerun/` are **not trustworthy** — they were
+generated before the `--exp_name` fix, so evaluation fell back to a
+random-initialised model. Re-run with `scripts/rerun_v2_main.sh` to
+produce correct v2 meta-test numbers.
+
+## 2. Ablation (A1 – A5), all at 5w5s, SSL-init encoder
+
+Source directory: `logs/v2_rerun/A*_*.log` (and corresponding
+`A*_*_history.json` for the full training curves).
+
+### A1 — Residual α sweep (M1)
+
+| α | val AUC | Source |
+|---|-----:|---|
+| 0.0 | **0.500** | `logs/v2_rerun/A1_alpha0.0.log` |
+| 0.3 | 0.7147 | `logs/v2_rerun/A1_alpha0.3.log` |
+| 0.5 | 0.7271 | `logs/v2_rerun/A1_alpha0.5.log` |
+| 0.7 (default) | 0.7249 | `logs/v2_rerun/A1_alpha0.7.log` |
+| 1.0 | 0.7264 | `logs/v2_rerun/A1_alpha1.0.log` |
+
+α=0 collapses to chance — confirms the "meta-GNN destroys the encoder
+signal" diagnosis that motivated M1. Anything in [0.3, 1.0] works.
+
+### A2 — Meta-GNN depth × type (M2)
+
+| Layers | GCN | GAT | Source (GAT) |
+|---|-----:|-----:|---|
+| 1 | 0.7277 | **0.7330** | `logs/v2_rerun/A2_gat_L1.log` |
+| 2 | 0.7289 | 0.7258 | `logs/v2_rerun/A2_gat_L2.log` |
+| 3 | 0.7251 | 0.7265 | `logs/v2_rerun/A2_gat_L3.log` |
+
+GAT @ 1 layer is optimal — validates the over-smoothing hypothesis.
+
+### A3 — Edge masking (M3)
+
+| Variant | val AUC | Source |
+|---|-----:|---|
+| full meta-graph (Q↔Q kept) | 0.7216 | `logs/v2_rerun/A3_full.log` |
+| **bipartite (only S→S, S→Q)** | **0.7274** | `logs/v2_rerun/A3_bipartite.log` |
+
++0.6 pp from cutting query-originated edges.
+
+### A4 — Contrastive weight λ (M4)
+
+| λ | val AUC | Source |
+|---|-----:|---|
+| 0.0 | 0.7208 | `logs/v2_rerun/A4_lambda0.0.log` |
+| **0.1** | **0.7291** | `logs/v2_rerun/A4_lambda0.1.log` |
+| 0.5 | 0.7279 | `logs/v2_rerun/A4_lambda0.5.log` |
+| 1.0 | 0.7240 | `logs/v2_rerun/A4_lambda1.0.log` |
+
+λ = 0.1 best; a small auxiliary contrastive term suffices.
+
+### A5 — SSL pretraining regime (M5)
+
+| Regime | val AUC | Source |
+|---|-----:|---|
+| from scratch | 0.7046 | `logs/v2_rerun/A5_scratch.log` |
+| **SSL → fine-tune** | **0.7266** | `logs/v2_rerun/A5_ssl_finetune.log` |
+| SSL → frozen encoder | 0.6036 | `logs/v2_rerun/A5_ssl_frozen.log` |
+
++2.2 pp from SSL; freezing the encoder is catastrophic (−10 pp). SSL
+must be followed by fine-tuning for the encoder to align with the
+episodic task.
+
+### SSL pretraining itself
+
+- Script: `pretrain_ssl.py`
+- Output: `logs/v2_initial/phase0_ssl.log`
+- 30 epochs, batch 256, InfoNCE τ = 0.1 on all 110k meta-train
+  molecules (with random drop_nodes / mask_atoms / drop_edges)
+- Final loss: 1.02 → 0.306 (end of epoch 30)
+
+## 3. v1 ablation (kept for completeness)
+
+Source: `logs/v1_stages/stage3.log` and
+`logs/v1_stages/stage4_all.log`.
+
+- **Affinity** (5w5s): cosine 0.571, bilinear 0.575, attention 0.562.
+  Choice of g() contributes <2 pp — **expressivity is not the
+  bottleneck**.
+- **kNN sparsification** (5w5s val): k=3 → 0.582, k=5 → 0.572,
+  k=10 → 0.562, k=100 → 0.545. Dense meta-graphs over-smooth.
+- **Sample efficiency** (5w, cosine, k=5): val AUC scales monotonically
+  with K, but ProtoNet scales **faster** than GoS v1 — the observation
+  that motivated the v2 redesign.
+
+## 4. Key takeaways
+
+1. **A clean metric baseline (ProtoNet) is a strong benchmark**
+   (0.72 val AUC at 5w5s on merged MoleculeNet).
+2. **GoS v1 failed** because a 2-layer weighted GCN over-smoothed the
+   encoder representation that ProtoNet was already separating. Evidence:
+   kNN sparsification helps (dense → 0.55); shallower GAT helps
+   (A2 GAT-L1 = 0.733).
+3. **GoS v2 closes the gap and beats ProtoNet by 1–2 pp on every
+   config.** Five modifications compose:
+   - M1 residual prototype (α safety net)
+   - M2 1-layer GAT meta-GNN
+   - M3 bipartite messaging
+   - M4 tiny contrastive aux loss (λ = 0.1)
+   - M5 MolCLR-style SSL pretraining
+4. **SSL is the largest single lever** (+2.2 pp); residual prototype
+   is the necessary safety net (A1 α=0 → 0.500 collapse).
+5. **Don't freeze** the SSL-pretrained encoder.
+
+## 5. Open items
+
+- Meta-test numbers for v2 are pending; will be generated by
+  `scripts/rerun_v2_main.sh`.
+- Current v2 meta-test JSONs
+  (`logs/v2_rerun/v2_*_test_results.json`) show AUC ≈ 0.55–0.58 —
+  these are **random-init baselines**, not the real model. See the
+  WARNING lines in `logs/v2_rerun/eval.log`.
