@@ -1,0 +1,104 @@
+=== Loading molecules ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+[cache] saved to ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt  (401.3 MB)
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Meta-train-only SSL pool: 30827 molecules (out of 110916 total).
+[SSL pretrain] 30827 molecules, 30 epochs, bs=256
+  ep 1 step 50  loss=2.0344
+  ep 1 step 100  loss=1.3255
+[SSL pretrain] epoch 1/30  loss=2.0006
+  ep 2 step 50  loss=1.0112
+  ep 2 step 100  loss=0.9088
+[SSL pretrain] epoch 2/30  loss=0.9957
+  ep 3 step 50  loss=0.8069
+  ep 3 step 100  loss=0.7776
+[SSL pretrain] epoch 3/30  loss=0.7757
+  ep 4 step 50  loss=0.6585
+  ep 4 step 100  loss=0.5869
+[SSL pretrain] epoch 4/30  loss=0.6705
+  ep 5 step 50  loss=0.6397
+  ep 5 step 100  loss=0.5423
+[SSL pretrain] epoch 5/30  loss=0.5965
+  ep 6 step 50  loss=0.5226
+  ep 6 step 100  loss=0.5108
+[SSL pretrain] epoch 6/30  loss=0.5512
+  ep 7 step 50  loss=0.4940
+  ep 7 step 100  loss=0.4966
+[SSL pretrain] epoch 7/30  loss=0.5091
+  ep 8 step 50  loss=0.5096
+  ep 8 step 100  loss=0.4523
+[SSL pretrain] epoch 8/30  loss=0.4846
+  ep 9 step 50  loss=0.4117
+  ep 9 step 100  loss=0.4776
+[SSL pretrain] epoch 9/30  loss=0.4622
+  ep 10 step 50  loss=0.4281
+  ep 10 step 100  loss=0.4380
+[SSL pretrain] epoch 10/30  loss=0.4414
+  ep 11 step 50  loss=0.3454
+  ep 11 step 100  loss=0.4039
+[SSL pretrain] epoch 11/30  loss=0.4219
+  ep 12 step 50  loss=0.3827
+  ep 12 step 100  loss=0.3766
+[SSL pretrain] epoch 12/30  loss=0.4121
+  ep 13 step 50  loss=0.3595
+  ep 13 step 100  loss=0.4299
+[SSL pretrain] epoch 13/30  loss=0.4033
+  ep 14 step 50  loss=0.3665
+  ep 14 step 100  loss=0.3269
+[SSL pretrain] epoch 14/30  loss=0.3930
+  ep 15 step 50  loss=0.3443
+  ep 15 step 100  loss=0.3737
+[SSL pretrain] epoch 15/30  loss=0.3845
+  ep 16 step 50  loss=0.3706
+  ep 16 step 100  loss=0.3757
+[SSL pretrain] epoch 16/30  loss=0.3780
+  ep 17 step 50  loss=0.3823
+  ep 17 step 100  loss=0.3755
+[SSL pretrain] epoch 17/30  loss=0.3608
+  ep 18 step 50  loss=0.3648
+  ep 18 step 100  loss=0.3474
+[SSL pretrain] epoch 18/30  loss=0.3603
+  ep 19 step 50  loss=0.3799
+  ep 19 step 100  loss=0.4094
+[SSL pretrain] epoch 19/30  loss=0.3526
+  ep 20 step 50  loss=0.3557
+  ep 20 step 100  loss=0.3144
+[SSL pretrain] epoch 20/30  loss=0.3475
+  ep 21 step 50  loss=0.3168
+  ep 21 step 100  loss=0.3154
+[SSL pretrain] epoch 21/30  loss=0.3405
+  ep 22 step 50  loss=0.3409
+  ep 22 step 100  loss=0.3471
+[SSL pretrain] epoch 22/30  loss=0.3421
+  ep 23 step 50  loss=0.3334
+  ep 23 step 100  loss=0.3254
+[SSL pretrain] epoch 23/30  loss=0.3301
+  ep 24 step 50  loss=0.3341
+  ep 24 step 100  loss=0.4218
+[SSL pretrain] epoch 24/30  loss=0.3354
+  ep 25 step 50  loss=0.3144
+  ep 25 step 100  loss=0.3524
+[SSL pretrain] epoch 25/30  loss=0.3187
+  ep 26 step 50  loss=0.3345
+  ep 26 step 100  loss=0.2858
+[SSL pretrain] epoch 26/30  loss=0.3199
+  ep 27 step 50  loss=0.3387
+  ep 27 step 100  loss=0.2892
+[SSL pretrain] epoch 27/30  loss=0.3173
+  ep 28 step 50  loss=0.2988
+  ep 28 step 100  loss=0.3808
+[SSL pretrain] epoch 28/30  loss=0.3122
+  ep 29 step 50  loss=0.3191
+  ep 29 step 100  loss=0.3484
+[SSL pretrain] epoch 29/30  loss=0.3034
+  ep 30 step 50  loss=0.2782
+  ep 30 step 100  loss=0.3732
+[SSL pretrain] epoch 30/30  loss=0.3060
+
+Saved pretrained encoder to ./checkpoints/ssl_encoder.pt

@@ -1,0 +1,44 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 3.6s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded SSL-pretrained encoder from ./checkpoints/ssl_encoder.pt
+Model parameters: 188,289
+
+=== Training ===
+[exp_name] A1_alpha0.0
+[resume] no checkpoint at ./checkpoints/A1_alpha0.0_last.pt — training from scratch
+[A1_alpha0.0] training 30000 episodes (start 1, eval every 500, patience 20)
+[A1_alpha0.0]  ep    500/30000  (  1.7%)  loss nan  val_auc 0.5000±0.0000  best 0.0000  pat 0/20  elapsed 0m17s  ETA 17m21s
+[A1_alpha0.0]  ep   1000/30000  (  3.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 0/20  elapsed 0m34s  ETA 16m54s
+[A1_alpha0.0]  ep   1500/30000  (  5.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 1/20  elapsed 0m52s  ETA 16m31s
+[A1_alpha0.0]  ep   2000/30000  (  6.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 2/20  elapsed 1m09s  ETA 16m19s
+[A1_alpha0.0]  ep   2500/30000  (  8.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 3/20  elapsed 1m27s  ETA 16m05s
+[A1_alpha0.0]  ep   3000/30000  ( 10.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 4/20  elapsed 1m45s  ETA 15m48s
+[A1_alpha0.0]  ep   3500/30000  ( 11.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 5/20  elapsed 2m03s  ETA 15m31s
+[A1_alpha0.0]  ep   4000/30000  ( 13.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 6/20  elapsed 2m20s  ETA 15m13s
+[A1_alpha0.0]  ep   4500/30000  ( 15.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 7/20  elapsed 2m38s  ETA 14m57s
+[A1_alpha0.0]  ep   5000/30000  ( 16.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 8/20  elapsed 2m56s  ETA 14m41s
+[A1_alpha0.0]  ep   5500/30000  ( 18.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 9/20  elapsed 3m13s  ETA 14m23s
+[A1_alpha0.0]  ep   6000/30000  ( 20.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 10/20  elapsed 3m31s  ETA 14m06s
+[A1_alpha0.0]  ep   6500/30000  ( 21.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 11/20  elapsed 3m49s  ETA 13m49s
+[A1_alpha0.0]  ep   7000/30000  ( 23.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 12/20  elapsed 4m07s  ETA 13m31s
+[A1_alpha0.0]  ep   7500/30000  ( 25.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 13/20  elapsed 4m25s  ETA 13m15s
+[A1_alpha0.0]  ep   8000/30000  ( 26.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 14/20  elapsed 4m42s  ETA 12m57s
+[A1_alpha0.0]  ep   8500/30000  ( 28.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 15/20  elapsed 5m00s  ETA 12m39s
+[A1_alpha0.0]  ep   9000/30000  ( 30.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 16/20  elapsed 5m17s  ETA 12m21s
+[A1_alpha0.0]  ep   9500/30000  ( 31.7%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 17/20  elapsed 5m35s  ETA 12m03s
+[A1_alpha0.0]  ep  10000/30000  ( 33.3%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 18/20  elapsed 5m53s  ETA 11m46s
+[A1_alpha0.0]  ep  10500/30000  ( 35.0%)  loss nan  val_auc 0.5000±0.0000  best 0.5000  pat 19/20  elapsed 6m10s  ETA 11m27s
+
+Early stopping at episode 10500 (best val AUC: 0.5000)
+
+Training complete. Best val AUC: 0.5000
+Checkpoint: ./checkpoints/A1_alpha0.0_best.pt
+History: ./logs_v2/A1_alpha0.0_history.json

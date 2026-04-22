@@ -1,0 +1,81 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 3.8s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded SSL-pretrained encoder from ./checkpoints/ssl_encoder.pt
+Model parameters: 187,265
+
+=== Training ===
+[exp_name] A2_gcn_L2
+[resume] no checkpoint at ./checkpoints/A2_gcn_L2_last.pt — training from scratch
+[A2_gcn_L2] training 30000 episodes (start 1, eval every 500, patience 20)
+[A2_gcn_L2]  ep    500/30000  (  1.7%)  loss 2.4233  val_auc 0.5858±0.0089  best 0.0000  pat 0/20  elapsed 0m23s  ETA 22m40s
+[A2_gcn_L2]  ep   1000/30000  (  3.3%)  loss 2.3707  val_auc 0.6026±0.0094  best 0.5858  pat 0/20  elapsed 0m44s  ETA 21m25s
+[A2_gcn_L2]  ep   1500/30000  (  5.0%)  loss 2.3432  val_auc 0.6112±0.0087  best 0.6026  pat 0/20  elapsed 1m05s  ETA 20m46s
+[A2_gcn_L2]  ep   2000/30000  (  6.7%)  loss 2.3254  val_auc 0.6236±0.0093  best 0.6112  pat 0/20  elapsed 1m28s  ETA 20m33s
+[A2_gcn_L2]  ep   2500/30000  (  8.3%)  loss 2.3186  val_auc 0.6274±0.0093  best 0.6236  pat 0/20  elapsed 1m49s  ETA 20m03s
+[A2_gcn_L2]  ep   3000/30000  ( 10.0%)  loss 2.3020  val_auc 0.6412±0.0093  best 0.6274  pat 0/20  elapsed 2m10s  ETA 19m35s
+[A2_gcn_L2]  ep   3500/30000  ( 11.7%)  loss 2.2865  val_auc 0.6381±0.0094  best 0.6412  pat 0/20  elapsed 2m31s  ETA 19m09s
+[A2_gcn_L2]  ep   4000/30000  ( 13.3%)  loss 2.2782  val_auc 0.6400±0.0094  best 0.6412  pat 1/20  elapsed 2m52s  ETA 18m44s
+[A2_gcn_L2]  ep   4500/30000  ( 15.0%)  loss 2.2727  val_auc 0.6552±0.0089  best 0.6412  pat 2/20  elapsed 3m13s  ETA 18m19s
+[A2_gcn_L2]  ep   5000/30000  ( 16.7%)  loss 2.2576  val_auc 0.6483±0.0096  best 0.6552  pat 0/20  elapsed 3m34s  ETA 17m53s
+[A2_gcn_L2]  ep   5500/30000  ( 18.3%)  loss 2.2559  val_auc 0.6490±0.0095  best 0.6552  pat 1/20  elapsed 3m55s  ETA 17m30s
+[A2_gcn_L2]  ep   6000/30000  ( 20.0%)  loss 2.2475  val_auc 0.6565±0.0096  best 0.6552  pat 2/20  elapsed 4m16s  ETA 17m07s
+[A2_gcn_L2]  ep   6500/30000  ( 21.7%)  loss 2.2385  val_auc 0.6585±0.0091  best 0.6565  pat 0/20  elapsed 4m37s  ETA 16m44s
+[A2_gcn_L2]  ep   7000/30000  ( 23.3%)  loss 2.2346  val_auc 0.6421±0.0099  best 0.6585  pat 0/20  elapsed 4m58s  ETA 16m21s
+[A2_gcn_L2]  ep   7500/30000  ( 25.0%)  loss 2.2082  val_auc 0.6616±0.0094  best 0.6585  pat 1/20  elapsed 5m19s  ETA 15m58s
+[A2_gcn_L2]  ep   8000/30000  ( 26.7%)  loss 2.2161  val_auc 0.6666±0.0097  best 0.6616  pat 0/20  elapsed 5m41s  ETA 15m38s
+[A2_gcn_L2]  ep   8500/30000  ( 28.3%)  loss 2.2035  val_auc 0.6819±0.0091  best 0.6666  pat 0/20  elapsed 6m02s  ETA 15m17s
+[A2_gcn_L2]  ep   9000/30000  ( 30.0%)  loss 2.1951  val_auc 0.6708±0.0091  best 0.6819  pat 0/20  elapsed 6m24s  ETA 14m57s
+[A2_gcn_L2]  ep   9500/30000  ( 31.7%)  loss 2.1993  val_auc 0.6829±0.0090  best 0.6819  pat 1/20  elapsed 6m45s  ETA 14m34s
+[A2_gcn_L2]  ep  10000/30000  ( 33.3%)  loss 2.1726  val_auc 0.6838±0.0092  best 0.6829  pat 0/20  elapsed 7m07s  ETA 14m14s
+[A2_gcn_L2]  ep  10500/30000  ( 35.0%)  loss 2.1693  val_auc 0.6913±0.0092  best 0.6838  pat 0/20  elapsed 7m28s  ETA 13m52s
+[A2_gcn_L2]  ep  11000/30000  ( 36.7%)  loss 2.1787  val_auc 0.6734±0.0090  best 0.6913  pat 0/20  elapsed 7m49s  ETA 13m30s
+[A2_gcn_L2]  ep  11500/30000  ( 38.3%)  loss 2.1624  val_auc 0.6872±0.0091  best 0.6913  pat 1/20  elapsed 8m11s  ETA 13m10s
+[A2_gcn_L2]  ep  12000/30000  ( 40.0%)  loss 2.1658  val_auc 0.6826±0.0095  best 0.6913  pat 2/20  elapsed 8m33s  ETA 12m50s
+[A2_gcn_L2]  ep  12500/30000  ( 41.7%)  loss 2.1729  val_auc 0.6691±0.0094  best 0.6913  pat 3/20  elapsed 8m56s  ETA 12m31s
+[A2_gcn_L2]  ep  13000/30000  ( 43.3%)  loss 2.1408  val_auc 0.6899±0.0092  best 0.6913  pat 4/20  elapsed 9m19s  ETA 12m11s
+[A2_gcn_L2]  ep  13500/30000  ( 45.0%)  loss 2.1643  val_auc 0.6922±0.0087  best 0.6913  pat 5/20  elapsed 9m41s  ETA 11m50s
+[A2_gcn_L2]  ep  14000/30000  ( 46.7%)  loss 2.1449  val_auc 0.6939±0.0093  best 0.6922  pat 0/20  elapsed 10m03s  ETA 11m30s
+[A2_gcn_L2]  ep  14500/30000  ( 48.3%)  loss 2.1483  val_auc 0.6911±0.0097  best 0.6939  pat 0/20  elapsed 10m25s  ETA 11m08s
+[A2_gcn_L2]  ep  15000/30000  ( 50.0%)  loss 2.1505  val_auc 0.7041±0.0088  best 0.6939  pat 1/20  elapsed 10m47s  ETA 10m47s
+[A2_gcn_L2]  ep  15500/30000  ( 51.7%)  loss 2.1227  val_auc 0.6947±0.0092  best 0.7041  pat 0/20  elapsed 11m09s  ETA 10m26s
+[A2_gcn_L2]  ep  16000/30000  ( 53.3%)  loss 2.1334  val_auc 0.6900±0.0090  best 0.7041  pat 1/20  elapsed 11m31s  ETA 10m04s
+[A2_gcn_L2]  ep  16500/30000  ( 55.0%)  loss 2.1294  val_auc 0.7050±0.0096  best 0.7041  pat 2/20  elapsed 11m53s  ETA 9m43s
+[A2_gcn_L2]  ep  17000/30000  ( 56.7%)  loss 2.1159  val_auc 0.6933±0.0091  best 0.7050  pat 0/20  elapsed 12m15s  ETA 9m22s
+[A2_gcn_L2]  ep  17500/30000  ( 58.3%)  loss 2.1298  val_auc 0.6913±0.0087  best 0.7050  pat 1/20  elapsed 12m36s  ETA 9m00s
+[A2_gcn_L2]  ep  18000/30000  ( 60.0%)  loss 2.0770  val_auc 0.6838±0.0095  best 0.7050  pat 2/20  elapsed 12m58s  ETA 8m39s
+[A2_gcn_L2]  ep  18500/30000  ( 61.7%)  loss 2.1053  val_auc 0.6969±0.0095  best 0.7050  pat 3/20  elapsed 13m20s  ETA 8m17s
+[A2_gcn_L2]  ep  19000/30000  ( 63.3%)  loss 2.1119  val_auc 0.6968±0.0096  best 0.7050  pat 4/20  elapsed 13m42s  ETA 7m56s
+[A2_gcn_L2]  ep  19500/30000  ( 65.0%)  loss 2.0848  val_auc 0.6959±0.0091  best 0.7050  pat 5/20  elapsed 14m04s  ETA 7m34s
+[A2_gcn_L2]  ep  20000/30000  ( 66.7%)  loss 2.1247  val_auc 0.7072±0.0094  best 0.7050  pat 6/20  elapsed 14m27s  ETA 7m13s
+[A2_gcn_L2]  ep  20500/30000  ( 68.3%)  loss 2.0943  val_auc 0.7069±0.0095  best 0.7072  pat 0/20  elapsed 14m49s  ETA 6m52s
+[A2_gcn_L2]  ep  21000/30000  ( 70.0%)  loss 2.0855  val_auc 0.7059±0.0089  best 0.7072  pat 1/20  elapsed 15m12s  ETA 6m30s
+[A2_gcn_L2]  ep  21500/30000  ( 71.7%)  loss 2.0810  val_auc 0.7054±0.0095  best 0.7072  pat 2/20  elapsed 15m34s  ETA 6m09s
+[A2_gcn_L2]  ep  22000/30000  ( 73.3%)  loss 2.0584  val_auc 0.7057±0.0089  best 0.7072  pat 3/20  elapsed 15m57s  ETA 5m48s
+[A2_gcn_L2]  ep  22500/30000  ( 75.0%)  loss 2.0784  val_auc 0.7046±0.0092  best 0.7072  pat 4/20  elapsed 16m18s  ETA 5m26s
+[A2_gcn_L2]  ep  23000/30000  ( 76.7%)  loss 2.0810  val_auc 0.7082±0.0094  best 0.7072  pat 5/20  elapsed 16m40s  ETA 5m04s
+[A2_gcn_L2]  ep  23500/30000  ( 78.3%)  loss 2.0605  val_auc 0.7200±0.0089  best 0.7082  pat 0/20  elapsed 17m00s  ETA 4m42s
+[A2_gcn_L2]  ep  24000/30000  ( 80.0%)  loss 2.0817  val_auc 0.7173±0.0089  best 0.7200  pat 0/20  elapsed 17m21s  ETA 4m20s
+[A2_gcn_L2]  ep  24500/30000  ( 81.7%)  loss 2.0413  val_auc 0.7123±0.0091  best 0.7200  pat 1/20  elapsed 17m42s  ETA 3m58s
+[A2_gcn_L2]  ep  25000/30000  ( 83.3%)  loss 2.0717  val_auc 0.7069±0.0090  best 0.7200  pat 2/20  elapsed 18m03s  ETA 3m36s
+[A2_gcn_L2]  ep  25500/30000  ( 85.0%)  loss 2.0671  val_auc 0.7086±0.0092  best 0.7200  pat 3/20  elapsed 18m24s  ETA 3m14s
+[A2_gcn_L2]  ep  26000/30000  ( 86.7%)  loss 2.0486  val_auc 0.7194±0.0087  best 0.7200  pat 4/20  elapsed 18m45s  ETA 2m53s
+[A2_gcn_L2]  ep  26500/30000  ( 88.3%)  loss 2.0253  val_auc 0.7154±0.0094  best 0.7200  pat 5/20  elapsed 19m06s  ETA 2m31s
+[A2_gcn_L2]  ep  27000/30000  ( 90.0%)  loss 2.0269  val_auc 0.7211±0.0093  best 0.7200  pat 6/20  elapsed 19m27s  ETA 2m09s
+[A2_gcn_L2]  ep  27500/30000  ( 91.7%)  loss 2.0173  val_auc 0.7229±0.0095  best 0.7211  pat 0/20  elapsed 19m48s  ETA 1m48s
+[A2_gcn_L2]  ep  28000/30000  ( 93.3%)  loss 2.0287  val_auc 0.6977±0.0094  best 0.7229  pat 0/20  elapsed 20m09s  ETA 1m26s
+[A2_gcn_L2]  ep  28500/30000  ( 95.0%)  loss 2.0363  val_auc 0.7206±0.0091  best 0.7229  pat 1/20  elapsed 20m32s  ETA 1m04s
+[A2_gcn_L2]  ep  29000/30000  ( 96.7%)  loss 2.0164  val_auc 0.7125±0.0096  best 0.7229  pat 2/20  elapsed 20m54s  ETA 0m43s
+[A2_gcn_L2]  ep  29500/30000  ( 98.3%)  loss 2.0446  val_auc 0.7289±0.0093  best 0.7229  pat 3/20  elapsed 21m16s  ETA 0m21s
+[A2_gcn_L2]  ep  30000/30000  (100.0%)  loss 2.0241  val_auc 0.7212±0.0092  best 0.7289  pat 0/20  elapsed 21m38s  ETA 0m00s
+
+Training complete. Best val AUC: 0.7289
+Checkpoint: ./checkpoints/A2_gcn_L2_best.pt
+History: ./logs_v2/A2_gcn_L2_history.json

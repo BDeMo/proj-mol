@@ -1,0 +1,81 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 3.5s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded SSL-pretrained encoder from ./checkpoints/ssl_encoder.pt
+Model parameters: 188,289
+
+=== Training ===
+[exp_name] A5_ssl_finetune
+[resume] no checkpoint at ./checkpoints/A5_ssl_finetune_last.pt — training from scratch
+[A5_ssl_finetune] training 30000 episodes (start 1, eval every 500, patience 20)
+[A5_ssl_finetune]  ep    500/30000  (  1.7%)  loss 2.4386  val_auc 0.5992±0.0089  best 0.0000  pat 0/20  elapsed 0m21s  ETA 20m49s
+[A5_ssl_finetune]  ep   1000/30000  (  3.3%)  loss 2.3735  val_auc 0.6030±0.0094  best 0.5992  pat 0/20  elapsed 0m41s  ETA 20m04s
+[A5_ssl_finetune]  ep   1500/30000  (  5.0%)  loss 2.3534  val_auc 0.6086±0.0090  best 0.6030  pat 0/20  elapsed 1m02s  ETA 19m45s
+[A5_ssl_finetune]  ep   2000/30000  (  6.7%)  loss 2.3365  val_auc 0.6216±0.0092  best 0.6086  pat 0/20  elapsed 1m22s  ETA 19m19s
+[A5_ssl_finetune]  ep   2500/30000  (  8.3%)  loss 2.3242  val_auc 0.6118±0.0095  best 0.6216  pat 0/20  elapsed 1m44s  ETA 19m06s
+[A5_ssl_finetune]  ep   3000/30000  ( 10.0%)  loss 2.3042  val_auc 0.6277±0.0092  best 0.6216  pat 1/20  elapsed 2m04s  ETA 18m42s
+[A5_ssl_finetune]  ep   3500/30000  ( 11.7%)  loss 2.2837  val_auc 0.6374±0.0095  best 0.6277  pat 0/20  elapsed 2m25s  ETA 18m20s
+[A5_ssl_finetune]  ep   4000/30000  ( 13.3%)  loss 2.2772  val_auc 0.6441±0.0092  best 0.6374  pat 0/20  elapsed 2m45s  ETA 17m58s
+[A5_ssl_finetune]  ep   4500/30000  ( 15.0%)  loss 2.2629  val_auc 0.6567±0.0091  best 0.6441  pat 0/20  elapsed 3m07s  ETA 17m41s
+[A5_ssl_finetune]  ep   5000/30000  ( 16.7%)  loss 2.2693  val_auc 0.6501±0.0096  best 0.6567  pat 0/20  elapsed 3m30s  ETA 17m30s
+[A5_ssl_finetune]  ep   5500/30000  ( 18.3%)  loss 2.2587  val_auc 0.6555±0.0094  best 0.6567  pat 1/20  elapsed 3m52s  ETA 17m16s
+[A5_ssl_finetune]  ep   6000/30000  ( 20.0%)  loss 2.2487  val_auc 0.6680±0.0093  best 0.6567  pat 2/20  elapsed 4m15s  ETA 17m01s
+[A5_ssl_finetune]  ep   6500/30000  ( 21.7%)  loss 2.2364  val_auc 0.6624±0.0092  best 0.6680  pat 0/20  elapsed 4m38s  ETA 16m45s
+[A5_ssl_finetune]  ep   7000/30000  ( 23.3%)  loss 2.2404  val_auc 0.6485±0.0098  best 0.6680  pat 1/20  elapsed 5m00s  ETA 16m28s
+[A5_ssl_finetune]  ep   7500/30000  ( 25.0%)  loss 2.2196  val_auc 0.6563±0.0091  best 0.6680  pat 2/20  elapsed 5m23s  ETA 16m09s
+[A5_ssl_finetune]  ep   8000/30000  ( 26.7%)  loss 2.2224  val_auc 0.6740±0.0092  best 0.6680  pat 3/20  elapsed 5m46s  ETA 15m52s
+[A5_ssl_finetune]  ep   8500/30000  ( 28.3%)  loss 2.2088  val_auc 0.6808±0.0090  best 0.6740  pat 0/20  elapsed 6m08s  ETA 15m32s
+[A5_ssl_finetune]  ep   9000/30000  ( 30.0%)  loss 2.1971  val_auc 0.6604±0.0093  best 0.6808  pat 0/20  elapsed 6m31s  ETA 15m13s
+[A5_ssl_finetune]  ep   9500/30000  ( 31.7%)  loss 2.2036  val_auc 0.6803±0.0089  best 0.6808  pat 1/20  elapsed 6m54s  ETA 14m54s
+[A5_ssl_finetune]  ep  10000/30000  ( 33.3%)  loss 2.1738  val_auc 0.6755±0.0092  best 0.6808  pat 2/20  elapsed 7m16s  ETA 14m33s
+[A5_ssl_finetune]  ep  10500/30000  ( 35.0%)  loss 2.1743  val_auc 0.6872±0.0095  best 0.6808  pat 3/20  elapsed 7m38s  ETA 14m11s
+[A5_ssl_finetune]  ep  11000/30000  ( 36.7%)  loss 2.1853  val_auc 0.6666±0.0093  best 0.6872  pat 0/20  elapsed 7m59s  ETA 13m48s
+[A5_ssl_finetune]  ep  11500/30000  ( 38.3%)  loss 2.1711  val_auc 0.6903±0.0092  best 0.6872  pat 1/20  elapsed 8m20s  ETA 13m25s
+[A5_ssl_finetune]  ep  12000/30000  ( 40.0%)  loss 2.1733  val_auc 0.6781±0.0096  best 0.6903  pat 0/20  elapsed 8m43s  ETA 13m04s
+[A5_ssl_finetune]  ep  12500/30000  ( 41.7%)  loss 2.1758  val_auc 0.6789±0.0096  best 0.6903  pat 1/20  elapsed 9m05s  ETA 12m44s
+[A5_ssl_finetune]  ep  13000/30000  ( 43.3%)  loss 2.1489  val_auc 0.6878±0.0096  best 0.6903  pat 2/20  elapsed 9m28s  ETA 12m22s
+[A5_ssl_finetune]  ep  13500/30000  ( 45.0%)  loss 2.1719  val_auc 0.6896±0.0088  best 0.6903  pat 3/20  elapsed 9m49s  ETA 12m01s
+[A5_ssl_finetune]  ep  14000/30000  ( 46.7%)  loss 2.1489  val_auc 0.6878±0.0094  best 0.6903  pat 4/20  elapsed 10m11s  ETA 11m39s
+[A5_ssl_finetune]  ep  14500/30000  ( 48.3%)  loss 2.1454  val_auc 0.6951±0.0096  best 0.6903  pat 5/20  elapsed 10m31s  ETA 11m15s
+[A5_ssl_finetune]  ep  15000/30000  ( 50.0%)  loss 2.1575  val_auc 0.7021±0.0090  best 0.6951  pat 0/20  elapsed 10m51s  ETA 10m51s
+[A5_ssl_finetune]  ep  15500/30000  ( 51.7%)  loss 2.1266  val_auc 0.6947±0.0092  best 0.7021  pat 0/20  elapsed 11m12s  ETA 10m28s
+[A5_ssl_finetune]  ep  16000/30000  ( 53.3%)  loss 2.1333  val_auc 0.6989±0.0088  best 0.7021  pat 1/20  elapsed 11m33s  ETA 10m06s
+[A5_ssl_finetune]  ep  16500/30000  ( 55.0%)  loss 2.1204  val_auc 0.7064±0.0097  best 0.7021  pat 2/20  elapsed 11m53s  ETA 9m44s
+[A5_ssl_finetune]  ep  17000/30000  ( 56.7%)  loss 2.1067  val_auc 0.6920±0.0090  best 0.7064  pat 0/20  elapsed 12m14s  ETA 9m21s
+[A5_ssl_finetune]  ep  17500/30000  ( 58.3%)  loss 2.1265  val_auc 0.6976±0.0089  best 0.7064  pat 1/20  elapsed 12m35s  ETA 8m59s
+[A5_ssl_finetune]  ep  18000/30000  ( 60.0%)  loss 2.0752  val_auc 0.6945±0.0093  best 0.7064  pat 2/20  elapsed 12m56s  ETA 8m37s
+[A5_ssl_finetune]  ep  18500/30000  ( 61.7%)  loss 2.1029  val_auc 0.7071±0.0098  best 0.7064  pat 3/20  elapsed 13m16s  ETA 8m15s
+[A5_ssl_finetune]  ep  19000/30000  ( 63.3%)  loss 2.1128  val_auc 0.6951±0.0096  best 0.7071  pat 0/20  elapsed 13m36s  ETA 7m52s
+[A5_ssl_finetune]  ep  19500/30000  ( 65.0%)  loss 2.0923  val_auc 0.7033±0.0090  best 0.7071  pat 1/20  elapsed 13m56s  ETA 7m30s
+[A5_ssl_finetune]  ep  20000/30000  ( 66.7%)  loss 2.1253  val_auc 0.7055±0.0094  best 0.7071  pat 2/20  elapsed 14m16s  ETA 7m08s
+[A5_ssl_finetune]  ep  20500/30000  ( 68.3%)  loss 2.0915  val_auc 0.7080±0.0094  best 0.7071  pat 3/20  elapsed 14m36s  ETA 6m46s
+[A5_ssl_finetune]  ep  21000/30000  ( 70.0%)  loss 2.0839  val_auc 0.7051±0.0088  best 0.7080  pat 0/20  elapsed 14m56s  ETA 6m24s
+[A5_ssl_finetune]  ep  21500/30000  ( 71.7%)  loss 2.0805  val_auc 0.7101±0.0096  best 0.7080  pat 1/20  elapsed 15m16s  ETA 6m02s
+[A5_ssl_finetune]  ep  22000/30000  ( 73.3%)  loss 2.0609  val_auc 0.7107±0.0085  best 0.7101  pat 0/20  elapsed 15m36s  ETA 5m40s
+[A5_ssl_finetune]  ep  22500/30000  ( 75.0%)  loss 2.0739  val_auc 0.7095±0.0093  best 0.7107  pat 0/20  elapsed 15m56s  ETA 5m18s
+[A5_ssl_finetune]  ep  23000/30000  ( 76.7%)  loss 2.0765  val_auc 0.7140±0.0097  best 0.7107  pat 1/20  elapsed 16m16s  ETA 4m57s
+[A5_ssl_finetune]  ep  23500/30000  ( 78.3%)  loss 2.0545  val_auc 0.7224±0.0094  best 0.7140  pat 0/20  elapsed 16m35s  ETA 4m35s
+[A5_ssl_finetune]  ep  24000/30000  ( 80.0%)  loss 2.0713  val_auc 0.7240±0.0087  best 0.7224  pat 0/20  elapsed 16m55s  ETA 4m13s
+[A5_ssl_finetune]  ep  24500/30000  ( 81.7%)  loss 2.0413  val_auc 0.7217±0.0092  best 0.7240  pat 0/20  elapsed 17m15s  ETA 3m52s
+[A5_ssl_finetune]  ep  25000/30000  ( 83.3%)  loss 2.0644  val_auc 0.7202±0.0091  best 0.7240  pat 1/20  elapsed 17m34s  ETA 3m30s
+[A5_ssl_finetune]  ep  25500/30000  ( 85.0%)  loss 2.0554  val_auc 0.7122±0.0095  best 0.7240  pat 2/20  elapsed 17m54s  ETA 3m09s
+[A5_ssl_finetune]  ep  26000/30000  ( 86.7%)  loss 2.0484  val_auc 0.7238±0.0089  best 0.7240  pat 3/20  elapsed 18m14s  ETA 2m48s
+[A5_ssl_finetune]  ep  26500/30000  ( 88.3%)  loss 2.0316  val_auc 0.7247±0.0096  best 0.7240  pat 4/20  elapsed 18m33s  ETA 2m27s
+[A5_ssl_finetune]  ep  27000/30000  ( 90.0%)  loss 2.0297  val_auc 0.7214±0.0093  best 0.7247  pat 0/20  elapsed 18m53s  ETA 2m05s
+[A5_ssl_finetune]  ep  27500/30000  ( 91.7%)  loss 2.0059  val_auc 0.7205±0.0093  best 0.7247  pat 1/20  elapsed 19m13s  ETA 1m44s
+[A5_ssl_finetune]  ep  28000/30000  ( 93.3%)  loss 2.0167  val_auc 0.7104±0.0094  best 0.7247  pat 2/20  elapsed 19m33s  ETA 1m23s
+[A5_ssl_finetune]  ep  28500/30000  ( 95.0%)  loss 2.0452  val_auc 0.7237±0.0095  best 0.7247  pat 3/20  elapsed 19m52s  ETA 1m02s
+[A5_ssl_finetune]  ep  29000/30000  ( 96.7%)  loss 2.0094  val_auc 0.7154±0.0094  best 0.7247  pat 4/20  elapsed 20m12s  ETA 0m41s
+[A5_ssl_finetune]  ep  29500/30000  ( 98.3%)  loss 2.0489  val_auc 0.7266±0.0095  best 0.7247  pat 5/20  elapsed 20m32s  ETA 0m20s
+[A5_ssl_finetune]  ep  30000/30000  (100.0%)  loss 2.0271  val_auc 0.7192±0.0092  best 0.7266  pat 0/20  elapsed 20m52s  ETA 0m00s
+
+Training complete. Best val AUC: 0.7266
+Checkpoint: ./checkpoints/A5_ssl_finetune_best.pt
+History: ./logs_v2/A5_ssl_finetune_history.json

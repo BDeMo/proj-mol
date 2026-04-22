@@ -1,0 +1,81 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 3.5s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded SSL-pretrained encoder from ./checkpoints/ssl_encoder.pt
+Model parameters: 188,289
+
+=== Training ===
+[exp_name] A4_lambda0.0
+[resume] no checkpoint at ./checkpoints/A4_lambda0.0_last.pt — training from scratch
+[A4_lambda0.0] training 30000 episodes (start 1, eval every 500, patience 20)
+[A4_lambda0.0]  ep    500/30000  (  1.7%)  loss 1.6114  val_auc 0.5855±0.0086  best 0.0000  pat 0/20  elapsed 0m19s  ETA 19m19s
+[A4_lambda0.0]  ep   1000/30000  (  3.3%)  loss 1.5878  val_auc 0.6114±0.0095  best 0.5855  pat 0/20  elapsed 0m38s  ETA 18m37s
+[A4_lambda0.0]  ep   1500/30000  (  5.0%)  loss 1.5671  val_auc 0.6202±0.0089  best 0.6114  pat 0/20  elapsed 0m57s  ETA 18m05s
+[A4_lambda0.0]  ep   2000/30000  (  6.7%)  loss 1.5503  val_auc 0.6121±0.0093  best 0.6202  pat 0/20  elapsed 1m16s  ETA 17m48s
+[A4_lambda0.0]  ep   2500/30000  (  8.3%)  loss 1.5467  val_auc 0.6171±0.0097  best 0.6202  pat 1/20  elapsed 1m35s  ETA 17m34s
+[A4_lambda0.0]  ep   3000/30000  ( 10.0%)  loss 1.5370  val_auc 0.6267±0.0095  best 0.6202  pat 2/20  elapsed 1m54s  ETA 17m12s
+[A4_lambda0.0]  ep   3500/30000  ( 11.7%)  loss 1.5224  val_auc 0.6336±0.0094  best 0.6267  pat 0/20  elapsed 2m13s  ETA 16m49s
+[A4_lambda0.0]  ep   4000/30000  ( 13.3%)  loss 1.5159  val_auc 0.6307±0.0094  best 0.6336  pat 0/20  elapsed 2m31s  ETA 16m26s
+[A4_lambda0.0]  ep   4500/30000  ( 15.0%)  loss 1.5138  val_auc 0.6627±0.0090  best 0.6336  pat 1/20  elapsed 2m50s  ETA 16m05s
+[A4_lambda0.0]  ep   5000/30000  ( 16.7%)  loss 1.5085  val_auc 0.6509±0.0097  best 0.6627  pat 0/20  elapsed 3m09s  ETA 15m45s
+[A4_lambda0.0]  ep   5500/30000  ( 18.3%)  loss 1.5041  val_auc 0.6468±0.0095  best 0.6627  pat 1/20  elapsed 3m27s  ETA 15m25s
+[A4_lambda0.0]  ep   6000/30000  ( 20.0%)  loss 1.5026  val_auc 0.6579±0.0092  best 0.6627  pat 2/20  elapsed 3m46s  ETA 15m07s
+[A4_lambda0.0]  ep   6500/30000  ( 21.7%)  loss 1.4886  val_auc 0.6649±0.0089  best 0.6627  pat 3/20  elapsed 4m05s  ETA 14m47s
+[A4_lambda0.0]  ep   7000/30000  ( 23.3%)  loss 1.4914  val_auc 0.6470±0.0100  best 0.6649  pat 0/20  elapsed 4m24s  ETA 14m28s
+[A4_lambda0.0]  ep   7500/30000  ( 25.0%)  loss 1.4783  val_auc 0.6666±0.0094  best 0.6649  pat 1/20  elapsed 4m43s  ETA 14m09s
+[A4_lambda0.0]  ep   8000/30000  ( 26.7%)  loss 1.4788  val_auc 0.6672±0.0094  best 0.6666  pat 0/20  elapsed 5m02s  ETA 13m50s
+[A4_lambda0.0]  ep   8500/30000  ( 28.3%)  loss 1.4744  val_auc 0.6767±0.0090  best 0.6672  pat 0/20  elapsed 5m20s  ETA 13m31s
+[A4_lambda0.0]  ep   9000/30000  ( 30.0%)  loss 1.4653  val_auc 0.6699±0.0090  best 0.6767  pat 0/20  elapsed 5m39s  ETA 13m12s
+[A4_lambda0.0]  ep   9500/30000  ( 31.7%)  loss 1.4747  val_auc 0.6804±0.0088  best 0.6767  pat 1/20  elapsed 5m59s  ETA 12m54s
+[A4_lambda0.0]  ep  10000/30000  ( 33.3%)  loss 1.4469  val_auc 0.6742±0.0092  best 0.6804  pat 0/20  elapsed 6m18s  ETA 12m36s
+[A4_lambda0.0]  ep  10500/30000  ( 35.0%)  loss 1.4470  val_auc 0.6839±0.0093  best 0.6804  pat 1/20  elapsed 6m37s  ETA 12m19s
+[A4_lambda0.0]  ep  11000/30000  ( 36.7%)  loss 1.4591  val_auc 0.6662±0.0092  best 0.6839  pat 0/20  elapsed 6m57s  ETA 12m01s
+[A4_lambda0.0]  ep  11500/30000  ( 38.3%)  loss 1.4495  val_auc 0.6858±0.0092  best 0.6839  pat 1/20  elapsed 7m17s  ETA 11m43s
+[A4_lambda0.0]  ep  12000/30000  ( 40.0%)  loss 1.4476  val_auc 0.6792±0.0097  best 0.6858  pat 0/20  elapsed 7m36s  ETA 11m24s
+[A4_lambda0.0]  ep  12500/30000  ( 41.7%)  loss 1.4501  val_auc 0.6673±0.0094  best 0.6858  pat 1/20  elapsed 7m55s  ETA 11m06s
+[A4_lambda0.0]  ep  13000/30000  ( 43.3%)  loss 1.4334  val_auc 0.6833±0.0094  best 0.6858  pat 2/20  elapsed 8m15s  ETA 10m47s
+[A4_lambda0.0]  ep  13500/30000  ( 45.0%)  loss 1.4524  val_auc 0.6878±0.0088  best 0.6858  pat 3/20  elapsed 8m34s  ETA 10m28s
+[A4_lambda0.0]  ep  14000/30000  ( 46.7%)  loss 1.4381  val_auc 0.6829±0.0093  best 0.6878  pat 0/20  elapsed 8m53s  ETA 10m09s
+[A4_lambda0.0]  ep  14500/30000  ( 48.3%)  loss 1.4392  val_auc 0.6893±0.0094  best 0.6878  pat 1/20  elapsed 9m12s  ETA 9m50s
+[A4_lambda0.0]  ep  15000/30000  ( 50.0%)  loss 1.4434  val_auc 0.6919±0.0088  best 0.6893  pat 0/20  elapsed 9m30s  ETA 9m30s
+[A4_lambda0.0]  ep  15500/30000  ( 51.7%)  loss 1.4208  val_auc 0.6947±0.0093  best 0.6919  pat 0/20  elapsed 9m49s  ETA 9m11s
+[A4_lambda0.0]  ep  16000/30000  ( 53.3%)  loss 1.4296  val_auc 0.6931±0.0089  best 0.6947  pat 0/20  elapsed 10m08s  ETA 8m52s
+[A4_lambda0.0]  ep  16500/30000  ( 55.0%)  loss 1.4207  val_auc 0.7033±0.0094  best 0.6947  pat 1/20  elapsed 10m27s  ETA 8m33s
+[A4_lambda0.0]  ep  17000/30000  ( 56.7%)  loss 1.4103  val_auc 0.6887±0.0089  best 0.7033  pat 0/20  elapsed 10m46s  ETA 8m14s
+[A4_lambda0.0]  ep  17500/30000  ( 58.3%)  loss 1.4218  val_auc 0.6821±0.0093  best 0.7033  pat 1/20  elapsed 11m05s  ETA 7m55s
+[A4_lambda0.0]  ep  18000/30000  ( 60.0%)  loss 1.3936  val_auc 0.6864±0.0096  best 0.7033  pat 2/20  elapsed 11m23s  ETA 7m35s
+[A4_lambda0.0]  ep  18500/30000  ( 61.7%)  loss 1.4109  val_auc 0.6998±0.0099  best 0.7033  pat 3/20  elapsed 11m42s  ETA 7m16s
+[A4_lambda0.0]  ep  19000/30000  ( 63.3%)  loss 1.4147  val_auc 0.6959±0.0095  best 0.7033  pat 4/20  elapsed 12m01s  ETA 6m57s
+[A4_lambda0.0]  ep  19500/30000  ( 65.0%)  loss 1.3972  val_auc 0.6893±0.0088  best 0.7033  pat 5/20  elapsed 12m19s  ETA 6m38s
+[A4_lambda0.0]  ep  20000/30000  ( 66.7%)  loss 1.4259  val_auc 0.7102±0.0094  best 0.7033  pat 6/20  elapsed 12m38s  ETA 6m19s
+[A4_lambda0.0]  ep  20500/30000  ( 68.3%)  loss 1.3998  val_auc 0.7044±0.0093  best 0.7102  pat 0/20  elapsed 12m57s  ETA 6m00s
+[A4_lambda0.0]  ep  21000/30000  ( 70.0%)  loss 1.3969  val_auc 0.6978±0.0092  best 0.7102  pat 1/20  elapsed 13m16s  ETA 5m41s
+[A4_lambda0.0]  ep  21500/30000  ( 71.7%)  loss 1.3973  val_auc 0.7010±0.0091  best 0.7102  pat 2/20  elapsed 13m34s  ETA 5m22s
+[A4_lambda0.0]  ep  22000/30000  ( 73.3%)  loss 1.3784  val_auc 0.7045±0.0087  best 0.7102  pat 3/20  elapsed 13m53s  ETA 5m03s
+[A4_lambda0.0]  ep  22500/30000  ( 75.0%)  loss 1.3871  val_auc 0.7071±0.0091  best 0.7102  pat 4/20  elapsed 14m12s  ETA 4m44s
+[A4_lambda0.0]  ep  23000/30000  ( 76.7%)  loss 1.3932  val_auc 0.7094±0.0097  best 0.7102  pat 5/20  elapsed 14m31s  ETA 4m25s
+[A4_lambda0.0]  ep  23500/30000  ( 78.3%)  loss 1.3840  val_auc 0.7140±0.0092  best 0.7102  pat 6/20  elapsed 14m51s  ETA 4m06s
+[A4_lambda0.0]  ep  24000/30000  ( 80.0%)  loss 1.3908  val_auc 0.7109±0.0092  best 0.7140  pat 0/20  elapsed 15m11s  ETA 3m47s
+[A4_lambda0.0]  ep  24500/30000  ( 81.7%)  loss 1.3691  val_auc 0.7146±0.0091  best 0.7140  pat 1/20  elapsed 15m31s  ETA 3m29s
+[A4_lambda0.0]  ep  25000/30000  ( 83.3%)  loss 1.3929  val_auc 0.7057±0.0093  best 0.7146  pat 0/20  elapsed 15m50s  ETA 3m10s
+[A4_lambda0.0]  ep  25500/30000  ( 85.0%)  loss 1.3859  val_auc 0.7015±0.0092  best 0.7146  pat 1/20  elapsed 16m10s  ETA 2m51s
+[A4_lambda0.0]  ep  26000/30000  ( 86.7%)  loss 1.3783  val_auc 0.7184±0.0087  best 0.7146  pat 2/20  elapsed 16m29s  ETA 2m32s
+[A4_lambda0.0]  ep  26500/30000  ( 88.3%)  loss 1.3651  val_auc 0.7103±0.0098  best 0.7184  pat 0/20  elapsed 16m48s  ETA 2m13s
+[A4_lambda0.0]  ep  27000/30000  ( 90.0%)  loss 1.3713  val_auc 0.7193±0.0093  best 0.7184  pat 1/20  elapsed 17m08s  ETA 1m54s
+[A4_lambda0.0]  ep  27500/30000  ( 91.7%)  loss 1.3481  val_auc 0.7200±0.0094  best 0.7193  pat 0/20  elapsed 17m27s  ETA 1m35s
+[A4_lambda0.0]  ep  28000/30000  ( 93.3%)  loss 1.3544  val_auc 0.7074±0.0093  best 0.7200  pat 0/20  elapsed 17m46s  ETA 1m16s
+[A4_lambda0.0]  ep  28500/30000  ( 95.0%)  loss 1.3634  val_auc 0.7195±0.0093  best 0.7200  pat 1/20  elapsed 18m06s  ETA 0m57s
+[A4_lambda0.0]  ep  29000/30000  ( 96.7%)  loss 1.3563  val_auc 0.7033±0.0093  best 0.7200  pat 2/20  elapsed 18m26s  ETA 0m38s
+[A4_lambda0.0]  ep  29500/30000  ( 98.3%)  loss 1.3775  val_auc 0.7208±0.0092  best 0.7200  pat 3/20  elapsed 18m45s  ETA 0m19s
+[A4_lambda0.0]  ep  30000/30000  (100.0%)  loss 1.3683  val_auc 0.7102±0.0093  best 0.7208  pat 0/20  elapsed 19m04s  ETA 0m00s
+
+Training complete. Best val AUC: 0.7208
+Checkpoint: ./checkpoints/A4_lambda0.0_best.pt
+History: ./logs_v2/A4_lambda0.0_history.json

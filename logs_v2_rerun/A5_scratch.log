@@ -1,0 +1,80 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 3.7s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 188,289
+
+=== Training ===
+[exp_name] A5_scratch
+[resume] no checkpoint at ./checkpoints/A5_scratch_last.pt — training from scratch
+[A5_scratch] training 30000 episodes (start 1, eval every 500, patience 20)
+[A5_scratch]  ep    500/30000  (  1.7%)  loss 2.4578  val_auc 0.5753±0.0091  best 0.0000  pat 0/20  elapsed 0m22s  ETA 21m53s
+[A5_scratch]  ep   1000/30000  (  3.3%)  loss 2.4057  val_auc 0.5746±0.0087  best 0.5753  pat 0/20  elapsed 0m43s  ETA 21m00s
+[A5_scratch]  ep   1500/30000  (  5.0%)  loss 2.3976  val_auc 0.5754±0.0089  best 0.5753  pat 1/20  elapsed 1m03s  ETA 20m12s
+[A5_scratch]  ep   2000/30000  (  6.7%)  loss 2.4032  val_auc 0.5844±0.0088  best 0.5754  pat 0/20  elapsed 1m24s  ETA 19m48s
+[A5_scratch]  ep   2500/30000  (  8.3%)  loss 2.3852  val_auc 0.5836±0.0091  best 0.5844  pat 0/20  elapsed 1m46s  ETA 19m28s
+[A5_scratch]  ep   3000/30000  ( 10.0%)  loss 2.3834  val_auc 0.5965±0.0091  best 0.5844  pat 1/20  elapsed 2m07s  ETA 19m05s
+[A5_scratch]  ep   3500/30000  ( 11.7%)  loss 2.3576  val_auc 0.6057±0.0091  best 0.5965  pat 0/20  elapsed 2m27s  ETA 18m38s
+[A5_scratch]  ep   4000/30000  ( 13.3%)  loss 2.3516  val_auc 0.5902±0.0091  best 0.6057  pat 0/20  elapsed 2m48s  ETA 18m14s
+[A5_scratch]  ep   4500/30000  ( 15.0%)  loss 2.3394  val_auc 0.6086±0.0092  best 0.6057  pat 1/20  elapsed 3m09s  ETA 17m51s
+[A5_scratch]  ep   5000/30000  ( 16.7%)  loss 2.3340  val_auc 0.6211±0.0097  best 0.6086  pat 0/20  elapsed 3m29s  ETA 17m27s
+[A5_scratch]  ep   5500/30000  ( 18.3%)  loss 2.3153  val_auc 0.6256±0.0092  best 0.6211  pat 0/20  elapsed 3m50s  ETA 17m05s
+[A5_scratch]  ep   6000/30000  ( 20.0%)  loss 2.3090  val_auc 0.6253±0.0094  best 0.6256  pat 0/20  elapsed 4m10s  ETA 16m43s
+[A5_scratch]  ep   6500/30000  ( 21.7%)  loss 2.2942  val_auc 0.6395±0.0092  best 0.6256  pat 1/20  elapsed 4m31s  ETA 16m21s
+[A5_scratch]  ep   7000/30000  ( 23.3%)  loss 2.2995  val_auc 0.6244±0.0102  best 0.6395  pat 0/20  elapsed 4m52s  ETA 16m01s
+[A5_scratch]  ep   7500/30000  ( 25.0%)  loss 2.2736  val_auc 0.6315±0.0095  best 0.6395  pat 1/20  elapsed 5m13s  ETA 15m40s
+[A5_scratch]  ep   8000/30000  ( 26.7%)  loss 2.2751  val_auc 0.6392±0.0090  best 0.6395  pat 2/20  elapsed 5m34s  ETA 15m20s
+[A5_scratch]  ep   8500/30000  ( 28.3%)  loss 2.2563  val_auc 0.6447±0.0090  best 0.6395  pat 3/20  elapsed 5m56s  ETA 15m00s
+[A5_scratch]  ep   9000/30000  ( 30.0%)  loss 2.2566  val_auc 0.6359±0.0093  best 0.6447  pat 0/20  elapsed 6m17s  ETA 14m40s
+[A5_scratch]  ep   9500/30000  ( 31.7%)  loss 2.2681  val_auc 0.6496±0.0092  best 0.6447  pat 1/20  elapsed 6m38s  ETA 14m19s
+[A5_scratch]  ep  10000/30000  ( 33.3%)  loss 2.2437  val_auc 0.6402±0.0095  best 0.6496  pat 0/20  elapsed 6m59s  ETA 13m59s
+[A5_scratch]  ep  10500/30000  ( 35.0%)  loss 2.2279  val_auc 0.6635±0.0092  best 0.6496  pat 1/20  elapsed 7m20s  ETA 13m37s
+[A5_scratch]  ep  11000/30000  ( 36.7%)  loss 2.2411  val_auc 0.6530±0.0095  best 0.6635  pat 0/20  elapsed 7m41s  ETA 13m17s
+[A5_scratch]  ep  11500/30000  ( 38.3%)  loss 2.2264  val_auc 0.6671±0.0094  best 0.6635  pat 1/20  elapsed 8m02s  ETA 12m56s
+[A5_scratch]  ep  12000/30000  ( 40.0%)  loss 2.2383  val_auc 0.6602±0.0096  best 0.6671  pat 0/20  elapsed 8m23s  ETA 12m34s
+[A5_scratch]  ep  12500/30000  ( 41.7%)  loss 2.2394  val_auc 0.6657±0.0094  best 0.6671  pat 1/20  elapsed 8m44s  ETA 12m14s
+[A5_scratch]  ep  13000/30000  ( 43.3%)  loss 2.2074  val_auc 0.6674±0.0092  best 0.6671  pat 2/20  elapsed 9m05s  ETA 11m53s
+[A5_scratch]  ep  13500/30000  ( 45.0%)  loss 2.2303  val_auc 0.6661±0.0089  best 0.6674  pat 0/20  elapsed 9m26s  ETA 11m32s
+[A5_scratch]  ep  14000/30000  ( 46.7%)  loss 2.2138  val_auc 0.6608±0.0093  best 0.6674  pat 1/20  elapsed 9m47s  ETA 11m11s
+[A5_scratch]  ep  14500/30000  ( 48.3%)  loss 2.2138  val_auc 0.6728±0.0094  best 0.6674  pat 2/20  elapsed 10m08s  ETA 10m50s
+[A5_scratch]  ep  15000/30000  ( 50.0%)  loss 2.2220  val_auc 0.6849±0.0090  best 0.6728  pat 0/20  elapsed 10m29s  ETA 10m29s
+[A5_scratch]  ep  15500/30000  ( 51.7%)  loss 2.1970  val_auc 0.6694±0.0093  best 0.6849  pat 0/20  elapsed 10m49s  ETA 10m07s
+[A5_scratch]  ep  16000/30000  ( 53.3%)  loss 2.2112  val_auc 0.6812±0.0090  best 0.6849  pat 1/20  elapsed 11m08s  ETA 9m45s
+[A5_scratch]  ep  16500/30000  ( 55.0%)  loss 2.1981  val_auc 0.6871±0.0094  best 0.6849  pat 2/20  elapsed 11m28s  ETA 9m23s
+[A5_scratch]  ep  17000/30000  ( 56.7%)  loss 2.1785  val_auc 0.6738±0.0090  best 0.6871  pat 0/20  elapsed 11m48s  ETA 9m01s
+[A5_scratch]  ep  17500/30000  ( 58.3%)  loss 2.2032  val_auc 0.6735±0.0092  best 0.6871  pat 1/20  elapsed 12m07s  ETA 8m39s
+[A5_scratch]  ep  18000/30000  ( 60.0%)  loss 2.1474  val_auc 0.6761±0.0097  best 0.6871  pat 2/20  elapsed 12m27s  ETA 8m18s
+[A5_scratch]  ep  18500/30000  ( 61.7%)  loss 2.1740  val_auc 0.6819±0.0097  best 0.6871  pat 3/20  elapsed 12m46s  ETA 7m56s
+[A5_scratch]  ep  19000/30000  ( 63.3%)  loss 2.1749  val_auc 0.6802±0.0096  best 0.6871  pat 4/20  elapsed 13m05s  ETA 7m34s
+[A5_scratch]  ep  19500/30000  ( 65.0%)  loss 2.1581  val_auc 0.6761±0.0088  best 0.6871  pat 5/20  elapsed 13m25s  ETA 7m13s
+[A5_scratch]  ep  20000/30000  ( 66.7%)  loss 2.1948  val_auc 0.6917±0.0095  best 0.6871  pat 6/20  elapsed 13m44s  ETA 6m52s
+[A5_scratch]  ep  20500/30000  ( 68.3%)  loss 2.1583  val_auc 0.6862±0.0095  best 0.6917  pat 0/20  elapsed 14m03s  ETA 6m31s
+[A5_scratch]  ep  21000/30000  ( 70.0%)  loss 2.1438  val_auc 0.6854±0.0090  best 0.6917  pat 1/20  elapsed 14m23s  ETA 6m09s
+[A5_scratch]  ep  21500/30000  ( 71.7%)  loss 2.1468  val_auc 0.6960±0.0093  best 0.6917  pat 2/20  elapsed 14m42s  ETA 5m49s
+[A5_scratch]  ep  22000/30000  ( 73.3%)  loss 2.1312  val_auc 0.6878±0.0086  best 0.6960  pat 0/20  elapsed 15m02s  ETA 5m28s
+[A5_scratch]  ep  22500/30000  ( 75.0%)  loss 2.1364  val_auc 0.6860±0.0097  best 0.6960  pat 1/20  elapsed 15m22s  ETA 5m07s
+[A5_scratch]  ep  23000/30000  ( 76.7%)  loss 2.1475  val_auc 0.6977±0.0096  best 0.6960  pat 2/20  elapsed 15m41s  ETA 4m46s
+[A5_scratch]  ep  23500/30000  ( 78.3%)  loss 2.1301  val_auc 0.7005±0.0093  best 0.6977  pat 0/20  elapsed 16m00s  ETA 4m25s
+[A5_scratch]  ep  24000/30000  ( 80.0%)  loss 2.1414  val_auc 0.6942±0.0088  best 0.7005  pat 0/20  elapsed 16m20s  ETA 4m05s
+[A5_scratch]  ep  24500/30000  ( 81.7%)  loss 2.1144  val_auc 0.7007±0.0089  best 0.7005  pat 1/20  elapsed 16m40s  ETA 3m44s
+[A5_scratch]  ep  25000/30000  ( 83.3%)  loss 2.1383  val_auc 0.6691±0.0092  best 0.7007  pat 0/20  elapsed 16m59s  ETA 3m23s
+[A5_scratch]  ep  25500/30000  ( 85.0%)  loss 2.1308  val_auc 0.6947±0.0094  best 0.7007  pat 1/20  elapsed 17m19s  ETA 3m03s
+[A5_scratch]  ep  26000/30000  ( 86.7%)  loss 2.1270  val_auc 0.6966±0.0089  best 0.7007  pat 2/20  elapsed 17m38s  ETA 2m42s
+[A5_scratch]  ep  26500/30000  ( 88.3%)  loss 2.1136  val_auc 0.6974±0.0094  best 0.7007  pat 3/20  elapsed 17m57s  ETA 2m22s
+[A5_scratch]  ep  27000/30000  ( 90.0%)  loss 2.1114  val_auc 0.7019±0.0095  best 0.7007  pat 4/20  elapsed 18m16s  ETA 2m01s
+[A5_scratch]  ep  27500/30000  ( 91.7%)  loss 2.0947  val_auc 0.6993±0.0093  best 0.7019  pat 0/20  elapsed 18m35s  ETA 1m41s
+[A5_scratch]  ep  28000/30000  ( 93.3%)  loss 2.0968  val_auc 0.6844±0.0095  best 0.7019  pat 1/20  elapsed 18m54s  ETA 1m21s
+[A5_scratch]  ep  28500/30000  ( 95.0%)  loss 2.1118  val_auc 0.7046±0.0093  best 0.7019  pat 2/20  elapsed 19m13s  ETA 1m00s
+[A5_scratch]  ep  29000/30000  ( 96.7%)  loss 2.0931  val_auc 0.6935±0.0094  best 0.7046  pat 0/20  elapsed 19m32s  ETA 0m40s
+[A5_scratch]  ep  29500/30000  ( 98.3%)  loss 2.1213  val_auc 0.7004±0.0093  best 0.7046  pat 1/20  elapsed 19m51s  ETA 0m20s
+[A5_scratch]  ep  30000/30000  (100.0%)  loss 2.1105  val_auc 0.6924±0.0090  best 0.7046  pat 2/20  elapsed 20m10s  ETA 0m00s
+
+Training complete. Best val AUC: 0.7046
+Checkpoint: ./checkpoints/A5_scratch_best.pt
+History: ./logs_v2/A5_scratch_history.json

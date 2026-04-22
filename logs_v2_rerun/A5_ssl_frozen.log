@@ -1,0 +1,73 @@
+Device: cuda
+Method: gos_v2 | 5-way 5-shot
+
+=== Loading datasets ===
+[cache] loaded 110916 molecules, 673 tasks from ./data_cache/_merged_muv-sider-tox21-toxcast_mp16.pt in 3.6s
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Loaded SSL-pretrained encoder from ./checkpoints/ssl_encoder.pt
+Encoder frozen.
+Model parameters: 69,377
+
+=== Training ===
+[exp_name] A5_ssl_frozen
+[resume] no checkpoint at ./checkpoints/A5_ssl_frozen_last.pt — training from scratch
+[A5_ssl_frozen] training 30000 episodes (start 1, eval every 500, patience 20)
+[A5_ssl_frozen]  ep    500/30000  (  1.7%)  loss 2.7148  val_auc 0.5904±0.0092  best 0.0000  pat 0/20  elapsed 0m18s  ETA 18m07s
+[A5_ssl_frozen]  ep   1000/30000  (  3.3%)  loss 2.4936  val_auc 0.5808±0.0090  best 0.5904  pat 0/20  elapsed 0m36s  ETA 17m42s
+[A5_ssl_frozen]  ep   1500/30000  (  5.0%)  loss 2.4309  val_auc 0.5913±0.0096  best 0.5904  pat 1/20  elapsed 0m54s  ETA 17m14s
+[A5_ssl_frozen]  ep   2000/30000  (  6.7%)  loss 2.3904  val_auc 0.5843±0.0090  best 0.5913  pat 0/20  elapsed 1m12s  ETA 16m48s
+[A5_ssl_frozen]  ep   2500/30000  (  8.3%)  loss 2.3999  val_auc 0.5846±0.0090  best 0.5913  pat 1/20  elapsed 1m29s  ETA 16m29s
+[A5_ssl_frozen]  ep   3000/30000  ( 10.0%)  loss 2.3857  val_auc 0.5836±0.0093  best 0.5913  pat 2/20  elapsed 1m48s  ETA 16m12s
+[A5_ssl_frozen]  ep   3500/30000  ( 11.7%)  loss 2.3805  val_auc 0.5829±0.0094  best 0.5913  pat 3/20  elapsed 2m05s  ETA 15m53s
+[A5_ssl_frozen]  ep   4000/30000  ( 13.3%)  loss 2.3779  val_auc 0.5864±0.0092  best 0.5913  pat 4/20  elapsed 2m23s  ETA 15m35s
+[A5_ssl_frozen]  ep   4500/30000  ( 15.0%)  loss 2.3799  val_auc 0.5945±0.0089  best 0.5913  pat 5/20  elapsed 2m41s  ETA 15m15s
+[A5_ssl_frozen]  ep   5000/30000  ( 16.7%)  loss 2.3685  val_auc 0.5840±0.0095  best 0.5945  pat 0/20  elapsed 2m59s  ETA 14m56s
+[A5_ssl_frozen]  ep   5500/30000  ( 18.3%)  loss 2.3881  val_auc 0.5905±0.0090  best 0.5945  pat 1/20  elapsed 3m17s  ETA 14m38s
+[A5_ssl_frozen]  ep   6000/30000  ( 20.0%)  loss 2.3751  val_auc 0.5906±0.0093  best 0.5945  pat 2/20  elapsed 3m35s  ETA 14m20s
+[A5_ssl_frozen]  ep   6500/30000  ( 21.7%)  loss 2.3792  val_auc 0.5917±0.0096  best 0.5945  pat 3/20  elapsed 3m53s  ETA 14m02s
+[A5_ssl_frozen]  ep   7000/30000  ( 23.3%)  loss 2.3737  val_auc 0.5933±0.0096  best 0.5945  pat 4/20  elapsed 4m11s  ETA 13m45s
+[A5_ssl_frozen]  ep   7500/30000  ( 25.0%)  loss 2.3697  val_auc 0.5923±0.0087  best 0.5945  pat 5/20  elapsed 4m29s  ETA 13m28s
+[A5_ssl_frozen]  ep   8000/30000  ( 26.7%)  loss 2.3706  val_auc 0.5873±0.0095  best 0.5945  pat 6/20  elapsed 4m47s  ETA 13m11s
+[A5_ssl_frozen]  ep   8500/30000  ( 28.3%)  loss 2.3728  val_auc 0.5969±0.0095  best 0.5945  pat 7/20  elapsed 5m06s  ETA 12m55s
+[A5_ssl_frozen]  ep   9000/30000  ( 30.0%)  loss 2.3727  val_auc 0.5926±0.0087  best 0.5969  pat 0/20  elapsed 5m25s  ETA 12m38s
+[A5_ssl_frozen]  ep   9500/30000  ( 31.7%)  loss 2.3763  val_auc 0.5894±0.0091  best 0.5969  pat 1/20  elapsed 5m43s  ETA 12m20s
+[A5_ssl_frozen]  ep  10000/30000  ( 33.3%)  loss 2.3760  val_auc 0.5912±0.0090  best 0.5969  pat 2/20  elapsed 6m01s  ETA 12m02s
+[A5_ssl_frozen]  ep  10500/30000  ( 35.0%)  loss 2.3689  val_auc 0.5875±0.0093  best 0.5969  pat 3/20  elapsed 6m19s  ETA 11m45s
+[A5_ssl_frozen]  ep  11000/30000  ( 36.7%)  loss 2.3774  val_auc 0.5811±0.0092  best 0.5969  pat 4/20  elapsed 6m38s  ETA 11m27s
+[A5_ssl_frozen]  ep  11500/30000  ( 38.3%)  loss 2.3791  val_auc 0.5949±0.0094  best 0.5969  pat 5/20  elapsed 6m56s  ETA 11m09s
+[A5_ssl_frozen]  ep  12000/30000  ( 40.0%)  loss 2.3804  val_auc 0.5929±0.0095  best 0.5969  pat 6/20  elapsed 7m14s  ETA 10m51s
+[A5_ssl_frozen]  ep  12500/30000  ( 41.7%)  loss 2.3785  val_auc 0.5971±0.0092  best 0.5969  pat 7/20  elapsed 7m32s  ETA 10m34s
+[A5_ssl_frozen]  ep  13000/30000  ( 43.3%)  loss 2.3691  val_auc 0.5858±0.0092  best 0.5971  pat 0/20  elapsed 7m51s  ETA 10m16s
+[A5_ssl_frozen]  ep  13500/30000  ( 45.0%)  loss 2.3758  val_auc 0.5905±0.0088  best 0.5971  pat 1/20  elapsed 8m09s  ETA 9m58s
+[A5_ssl_frozen]  ep  14000/30000  ( 46.7%)  loss 2.3688  val_auc 0.5867±0.0093  best 0.5971  pat 2/20  elapsed 8m27s  ETA 9m40s
+[A5_ssl_frozen]  ep  14500/30000  ( 48.3%)  loss 2.3735  val_auc 0.6036±0.0089  best 0.5971  pat 3/20  elapsed 8m46s  ETA 9m22s
+[A5_ssl_frozen]  ep  15000/30000  ( 50.0%)  loss 2.3732  val_auc 0.5954±0.0094  best 0.6036  pat 0/20  elapsed 9m04s  ETA 9m04s
+[A5_ssl_frozen]  ep  15500/30000  ( 51.7%)  loss 2.3647  val_auc 0.5940±0.0092  best 0.6036  pat 1/20  elapsed 9m22s  ETA 8m46s
+[A5_ssl_frozen]  ep  16000/30000  ( 53.3%)  loss 2.3689  val_auc 0.5917±0.0092  best 0.6036  pat 2/20  elapsed 9m38s  ETA 8m26s
+[A5_ssl_frozen]  ep  16500/30000  ( 55.0%)  loss 2.3719  val_auc 0.6007±0.0092  best 0.6036  pat 3/20  elapsed 9m55s  ETA 8m07s
+[A5_ssl_frozen]  ep  17000/30000  ( 56.7%)  loss 2.3725  val_auc 0.5783±0.0090  best 0.6036  pat 4/20  elapsed 10m11s  ETA 7m47s
+[A5_ssl_frozen]  ep  17500/30000  ( 58.3%)  loss 2.3803  val_auc 0.5868±0.0087  best 0.6036  pat 5/20  elapsed 10m27s  ETA 7m28s
+[A5_ssl_frozen]  ep  18000/30000  ( 60.0%)  loss 2.3677  val_auc 0.5901±0.0094  best 0.6036  pat 6/20  elapsed 10m43s  ETA 7m09s
+[A5_ssl_frozen]  ep  18500/30000  ( 61.7%)  loss 2.3706  val_auc 0.5940±0.0095  best 0.6036  pat 7/20  elapsed 11m00s  ETA 6m50s
+[A5_ssl_frozen]  ep  19000/30000  ( 63.3%)  loss 2.3666  val_auc 0.5946±0.0090  best 0.6036  pat 8/20  elapsed 11m16s  ETA 6m31s
+[A5_ssl_frozen]  ep  19500/30000  ( 65.0%)  loss 2.3644  val_auc 0.5842±0.0089  best 0.6036  pat 9/20  elapsed 11m33s  ETA 6m13s
+[A5_ssl_frozen]  ep  20000/30000  ( 66.7%)  loss 2.3750  val_auc 0.5948±0.0094  best 0.6036  pat 10/20  elapsed 11m49s  ETA 5m54s
+[A5_ssl_frozen]  ep  20500/30000  ( 68.3%)  loss 2.3688  val_auc 0.5866±0.0091  best 0.6036  pat 11/20  elapsed 12m05s  ETA 5m36s
+[A5_ssl_frozen]  ep  21000/30000  ( 70.0%)  loss 2.3688  val_auc 0.5906±0.0090  best 0.6036  pat 12/20  elapsed 12m22s  ETA 5m18s
+[A5_ssl_frozen]  ep  21500/30000  ( 71.7%)  loss 2.3702  val_auc 0.5922±0.0096  best 0.6036  pat 13/20  elapsed 12m39s  ETA 5m00s
+[A5_ssl_frozen]  ep  22000/30000  ( 73.3%)  loss 2.3639  val_auc 0.5964±0.0093  best 0.6036  pat 14/20  elapsed 12m55s  ETA 4m42s
+[A5_ssl_frozen]  ep  22500/30000  ( 75.0%)  loss 2.3648  val_auc 0.5801±0.0088  best 0.6036  pat 15/20  elapsed 13m12s  ETA 4m24s
+[A5_ssl_frozen]  ep  23000/30000  ( 76.7%)  loss 2.3712  val_auc 0.5907±0.0093  best 0.6036  pat 16/20  elapsed 13m28s  ETA 4m06s
+[A5_ssl_frozen]  ep  23500/30000  ( 78.3%)  loss 2.3634  val_auc 0.5965±0.0095  best 0.6036  pat 17/20  elapsed 13m44s  ETA 3m48s
+[A5_ssl_frozen]  ep  24000/30000  ( 80.0%)  loss 2.3663  val_auc 0.5852±0.0092  best 0.6036  pat 18/20  elapsed 14m01s  ETA 3m30s
+[A5_ssl_frozen]  ep  24500/30000  ( 81.7%)  loss 2.3656  val_auc 0.5984±0.0087  best 0.6036  pat 19/20  elapsed 14m17s  ETA 3m12s
+
+Early stopping at episode 24500 (best val AUC: 0.6036)
+
+Training complete. Best val AUC: 0.6036
+Checkpoint: ./checkpoints/A5_ssl_frozen_best.pt
+History: ./logs_v2/A5_ssl_frozen_history.json
