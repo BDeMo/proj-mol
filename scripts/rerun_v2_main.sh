@@ -6,7 +6,7 @@
 # Why: those runs used the OLD code (no --exp_name), so both no-ssl and
 # ssl wrote to the same checkpoint file.  The later eval pass loaded
 # checkpoints that didn't exist → random-model evaluation → bogus
-# numbers in logs_v2_rerun/v2_*_test_results.json.
+# numbers in logs/v2_rerun/v2_*_test_results.json.
 #
 # Usage: bash scripts/rerun_v2_main.sh
 # ═══════════════════════════════════════════════════════════════════════
@@ -16,7 +16,7 @@ cd "$(dirname "$0")/.."
 export DATASETS="${DATASETS:-tox21 toxcast muv sider}"
 export EPISODES="${EPISODES:-30000}"
 export PATIENCE="${PATIENCE:-20}"
-LOG_DIR="${LOG_DIR:-./logs_v2_rerun}"
+LOG_DIR="${LOG_DIR:-./logs/v2_rerun}"
 mkdir -p "$LOG_DIR" checkpoints
 
 if [[ -n "${GPUS:-}" ]]; then

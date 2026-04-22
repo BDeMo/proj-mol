@@ -6,13 +6,14 @@ dist/
 build/
 .eggs/
 
-# Data cache
+# Data cache (large; regenerated on first run)
 data_cache/
 
-# Training outputs
+# Training outputs (large binary checkpoints)
 checkpoints/
-logs/
-ablation_results/
+
+# Logs are committed for reproducibility — do NOT ignore
+# logs/  logs_v2/  logs_v2_rerun/  logs_final/  runs/  are all tracked
 
 # IDE
 .vscode/
@@ -31,4 +32,3 @@ Thumbs.db
 # Claude Code
 .claude/
 ~$*
-runs/

@@ -32,7 +32,7 @@ cd "$(dirname "$0")/.."
 export DATASETS="${DATASETS:-tox21 toxcast muv sider}"
 export EPISODES="${EPISODES:-30000}"
 export PATIENCE="${PATIENCE:-20}"
-LOG_DIR="${LOG_DIR:-./logs_v2}"
+LOG_DIR="${LOG_DIR:-./logs/v2}"
 mkdir -p "$LOG_DIR" checkpoints
 
 if [[ -n "${GPUS:-}" ]]; then

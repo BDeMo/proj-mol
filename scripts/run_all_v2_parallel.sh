@@ -14,7 +14,7 @@ export DATASETS="${DATASETS:-tox21 toxcast muv sider}"
 export EPISODES="${EPISODES:-30000}"
 export PATIENCE="${PATIENCE:-20}"
 export SSL_EPOCHS="${SSL_EPOCHS:-30}"
-LOG_DIR="${LOG_DIR:-./logs_v2}"
+LOG_DIR="${LOG_DIR:-./logs/v2}"
 mkdir -p "$LOG_DIR" checkpoints
 
 if [[ -n "${GPUS:-}" ]]; then

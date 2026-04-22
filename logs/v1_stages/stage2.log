@@ -1,0 +1,174 @@
+==============================================
+Stage 2: Encoder & Baselines Training
+==============================================
+Config: 5-way 1-shot, datasets=tox21 toxcast muv sider, episodes=30000
+
+--- Training Prototypical Network ---
+Device: cuda:0
+Method: proto | 5-way 1-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:0 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 118,912
+
+=== Training ===
+
+Training complete. Best val AUC: 0.5855
+Checkpoint: ./checkpoints/proto_5w1s_best.pt
+History: ./logs/proto_5w1s_history.json
+
+--- Training MAML ---
+Device: cuda:0
+Method: maml | 5-way 1-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:0 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 119,557
+
+=== Training ===
+
+Early stopping at episode 14500 (best val AUC: 0.5124)
+
+Training complete. Best val AUC: 0.5124
+Checkpoint: ./checkpoints/maml_5w1s_best.pt
+History: ./logs/maml_5w1s_history.json
+
+=== Stage 2 Complete ===
+Checkpoints saved in ./checkpoints/
+Training logs saved in ./logs/
+==============================================
+Stage 2: Encoder & Baselines Training
+==============================================
+Config: 5-way 5-shot, datasets=tox21 toxcast muv sider, episodes=30000
+
+--- Training Prototypical Network ---
+Device: cuda:0
+Method: proto | 5-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:0 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 118,912
+
+=== Training ===
+
+Training complete. Best val AUC: 0.7160
+Checkpoint: ./checkpoints/proto_5w5s_best.pt
+History: ./logs/proto_5w5s_history.json
+
+--- Training MAML ---
+Device: cuda:0
+Method: maml | 5-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:0 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 119,557
+
+=== Training ===
+
+Early stopping at episode 11000 (best val AUC: 0.5131)
+
+Training complete. Best val AUC: 0.5131
+Checkpoint: ./checkpoints/maml_5w5s_best.pt
+History: ./logs/maml_5w5s_history.json
+
+=== Stage 2 Complete ===
+Checkpoints saved in ./checkpoints/
+Training logs saved in ./logs/
+==============================================
+Stage 2: Encoder & Baselines Training
+==============================================
+Config: 10-way 5-shot, datasets=tox21 toxcast muv sider, episodes=30000
+
+--- Training Prototypical Network ---
+Device: cuda:0
+Method: proto | 10-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:0 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 118,912
+
+=== Training ===
+
+Training complete. Best val AUC: 0.6995
+Checkpoint: ./checkpoints/proto_10w5s_best.pt
+History: ./logs/proto_10w5s_history.json
+
+--- Training MAML ---
+Device: cuda:0
+Method: maml | 10-way 5-shot
+
+=== Loading datasets ===
+[TOX21] 7823 molecules, 12 valid tasks (min_pos=16)
+[TOXCAST] 8579 molecules, 617 valid tasks (min_pos=16)
+[MUV] 93087 molecules, 17 valid tasks (min_pos=16)
+[SIDER] 1427 molecules, 27 valid tasks (min_pos=16)
+Total: 110916 molecules, 673 tasks
+Graphs pre-loaded onto cuda:0 (110916 graphs)
+
+=== Splitting tasks ===
+  meta-train: 405 tasks
+  meta-val: 134 tasks
+  meta-test: 134 tasks
+Model parameters: 120,202
+
+=== Training ===
+
+Early stopping at episode 18000 (best val AUC: 0.5125)
+
+Training complete. Best val AUC: 0.5125
+Checkpoint: ./checkpoints/maml_10w5s_best.pt
+History: ./logs/maml_10w5s_history.json
+
+=== Stage 2 Complete ===
+Checkpoints saved in ./checkpoints/
+Training logs saved in ./logs/

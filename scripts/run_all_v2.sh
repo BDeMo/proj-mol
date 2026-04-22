@@ -39,7 +39,7 @@ LOG_FILE="${LOG_FILE:-./run_v2.log}"
 
 exec > >(tee -a "$LOG_FILE") 2>&1
 
-mkdir -p checkpoints logs_v2 ablation_v2
+mkdir -p checkpoints logs/v2
 
 echo "╔══════════════════════════════════════════════════╗"
 echo "║  Graph-of-Shots v2 — Full Experiment Pipeline   ║"
@@ -53,7 +53,7 @@ echo "╚═══════════════════════�
 
 COMMON_EPIS=(--datasets $DATASETS --episodes_train $EPISODES \
              --patience $PATIENCE --device $DEVICE \
-             --log_dir ./logs_v2 --save_dir ./checkpoints)
+             --log_dir ./logs/v2 --save_dir ./checkpoints)
 
 SSL_CKPT=./checkpoints/ssl_encoder.pt
 
@@ -188,7 +188,7 @@ for CFG in "5 1" "5 5" "10 5"; do
         python evaluate.py --method gos_v2 \
             --datasets $DATASETS --n_way $N --k_shot $K \
             --episodes_test 1000 --device $DEVICE \
-            --log_dir ./logs_v2 --save_dir ./checkpoints $SSL_ARG \
+            --log_dir ./logs/v2 --save_dir ./checkpoints $SSL_ARG \
             2>/dev/null || echo "  (skipped — no checkpoint for ${N}w${K}s ${SSL_TAG})"
     done
 done
@@ -200,6 +200,6 @@ echo "║  Finished: $(date)"
 echo "╚══════════════════════════════════════════════════╝"
 echo ""
 echo "Results:"
-echo "  logs_v2/            history.json + *_test_results.json"
+echo "  logs/v2/            history.json + *_test_results.json"
 echo "  checkpoints/        best_*.pt + ssl_encoder.pt"
 echo "  $LOG_FILE           full stdout/stderr"
